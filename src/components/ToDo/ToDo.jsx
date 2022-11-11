@@ -12,6 +12,7 @@ export default function ToDo({todo,checkTime}) {
         <label htmlFor="">
             <span>{todo.name}</span>
             <span>{todo.time}</span>
+            <span>목표시간 :{todo.goalTime}</span>
            <button onClick={()=>{showTimer(todo.id,todo.time)}}><FcAlarmClock></FcAlarmClock></button>
         </label>
 

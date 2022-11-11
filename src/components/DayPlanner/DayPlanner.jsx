@@ -1,20 +1,26 @@
 //오늘 할 일을 감싸는 컴포넌트
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import StopWatch from '../StopWatch/StopWatch';
 import ToDo from '../ToDo/ToDo'
 import AddToDo from '../AddToDo/AddToDo';
 
 export default function DayPlanner() {
     const [timer, setTimer] = useState(null);
-    const [todos,setTodos] = useState([
-        {name:"포트폴리오 만들기",state:"active",time:"01:00:00",repeat:"everyday",id:"jj"},
-        {name:"독서",state:"active",time:"00:50:00",repeat:"everyday",id:"jjj"},{name:"윤석열" ,id:"tjrduf"}
-    
-    ]);
+    const [todos,setTodos] = useState(()=>readTodos());
 
     const [selectedTime, setSelectedTime] = useState();
     const [timerSetting,setTimerSetting] = useState(null);
 
+
+    useEffect(()=>{
+        localStorage.setItem('todos',JSON.stringify(todos));
+        console.log('todos 변경');
+    },[todos]);
+
+    function readTodos(){
+        const todos = localStorage.getItem('todos');
+        return todos? JSON.parse(todos):[];
+    }
 
     const timeSetting = ()=>{
         console.log(selectedTime);
@@ -50,6 +56,13 @@ export default function DayPlanner() {
         })
         setTodos(updated);
     }
+
+    const updateTodos = (newTodos) =>{
+        const updated = [...todos, newTodos];
+        setTodos(updated);
+
+    }
+
   return (
     <div>
         {todos.map(item=>(
@@ -57,7 +70,7 @@ export default function DayPlanner() {
         ))}
         {timer===null? null:
         <StopWatch todo={timer} updateTime={updateTime} time={timerSetting}></StopWatch>}
-        <AddToDo></AddToDo>
+        <AddToDo updateTodos={updateTodos}></AddToDo>
 
     </div>
   )
