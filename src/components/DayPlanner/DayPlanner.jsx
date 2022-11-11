@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import StopWatch from '../StopWatch/StopWatch';
 import ToDo from '../ToDo/ToDo'
+import AddToDo from '../AddToDo/AddToDo';
 
 export default function DayPlanner() {
     const [timer, setTimer] = useState(null);
@@ -56,6 +57,8 @@ export default function DayPlanner() {
         ))}
         {timer===null? null:
         <StopWatch todo={timer} updateTime={updateTime} time={timerSetting}></StopWatch>}
+        <AddToDo></AddToDo>
+
     </div>
   )
 }

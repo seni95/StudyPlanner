@@ -49,8 +49,6 @@ return (
         <button onClick={()=>{stop(); setIsstart(false);}}>stop</button>
         :
         <button onClick={()=>{start(); setIsstart(true);}}>start</button>    }
-        <div>{time}</div>
-        <div>{initialValue}</div>
     </div>
   )
 }
