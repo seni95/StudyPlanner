@@ -16,23 +16,22 @@ export default function DayPlanner() {
 
 
     const timeSetting = ()=>{
-        const selected = todos.map(item=>item.id==timer?item.time:null);
-        console.log(typeof(selected));
         console.log(selectedTime);
-        const selectedHour = selectedTime.substr(0,2);
-        const selectedMinutes = selectedTime.substr(3,2);
-        const selectedSeconds = selectedTime.substr(6,2);
-        console.log(selectedHour);
-        console.log(selectedMinutes);
-        console.log(selectedSeconds);
-        setTimerSetting([selectedHour,selectedMinutes,selectedSeconds]);
+        console.log(timer);
+
+
     }
 
     const checkTime = (id,time)=>{
         if(timer===null){
             setTimer(id);
             setSelectedTime(time);
-            timeSetting();
+            const selectedHour = time.substr(0,2);
+            const selectedMinutes = time.substr(3,2);
+            const selectedSeconds = time.substr(6,2);
+            setTimerSetting([parseInt(selectedHour),parseInt(selectedMinutes),
+                parseInt(selectedSeconds)]);
+
         }
         else {
             setTimer(null);

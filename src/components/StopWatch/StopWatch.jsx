@@ -2,11 +2,18 @@ import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from '
 import useCounter from '../../hooks/useCounter';
 
 export default function StopWatch({todo,updateTime,time}) {
-    const [hour,setHour] = useState(time===null?0:time[0]);
-    const [minutes,setMinutes] = useState(time===null?0:time[1]);
-    const [seconds,setSeconds] = useState(time===null?0:time[2]);
+    const [hour,setHour] = useState(time[0]);
+    const [minutes,setMinutes] = useState(time[1]);
+    const [seconds,setSeconds] = useState(time[2]);
     const [isStart, setIsstart] = useState(false);
-    const {count,start,stop,reset} = useCounter(0,1000);
+    const [initialValue,setInitialValue] = useState(()=>{
+        const initialHour = time[0]*3600;
+        const initialMinutes = time[1]*60;
+        const initialSeconds = time[2];
+        const valueResult = initialHour+initialMinutes+initialSeconds;
+        return valueResult;
+    });
+    const {count,start,stop,reset} = useCounter(initialValue,1000);
     const [id, setId] = useState(todo);
 
     const uploadTime = ()=>{
@@ -15,10 +22,12 @@ export default function StopWatch({todo,updateTime,time}) {
         const resultS = seconds<10?"0"+seconds:seconds;
         const result  = resultH+":"+resultM+":" +resultS;
         updateTime(id,result);
+        
     }
    
 
-    // useEffect(uploadTime,[seconds]);
+
+    useEffect(uploadTime,[seconds]);
 
     const operate = ()=>{
         const currentHours = Math.floor(count/3600);
@@ -41,6 +50,7 @@ return (
         :
         <button onClick={()=>{start(); setIsstart(true);}}>start</button>    }
         <div>{time}</div>
+        <div>{initialValue}</div>
     </div>
   )
 }
