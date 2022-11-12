@@ -6,7 +6,7 @@ import AddToDo from '../AddToDo/AddToDo';
 
 export default function DayPlanner({plannerRepository}) {
     const [timer, setTimer] = useState(null);
-    const [todos,setTodos] = useState(()=>readTodos());
+    const [todos,setTodos] = useState([]);
 
     const [selectedTime, setSelectedTime] = useState();
     const [timerSetting,setTimerSetting] = useState(null);
@@ -39,12 +39,9 @@ export default function DayPlanner({plannerRepository}) {
         }
 
 
-    })
+    },[])
 
-    function readTodos(){
-        const todos = localStorage.getItem('todos');
-        return todos? JSON.parse(todos):[];
-    }
+
 
     const timeSetting = ()=>{
         console.log(selectedTime);
@@ -79,6 +76,7 @@ export default function DayPlanner({plannerRepository}) {
             } return item;
         })
         setTodos(updated);
+        plannerRepository.saveData(today,updated);
     }
 
     const updateTodos = (newTodos) =>{
