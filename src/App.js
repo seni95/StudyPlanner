@@ -7,7 +7,7 @@ function App({plannerRepository}) {
   return (
   <div>
     <DayPlanner plannerRepository={plannerRepository}></DayPlanner>
-    <Calendar></Calendar>
+    <Calendar plannerRepository={plannerRepository}></Calendar>
   </div>
   );
 }

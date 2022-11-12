@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import styles from './Calendar.module.css';
 const cx = classNames.bind(styles);
 
-const Calendar = () => {
+const Calendar = ({plannerRepository}) => {
   const today = {
     year: new Date().getFullYear(), //오늘 연도
     month: new Date().getMonth() + 1, //오늘 월
@@ -145,7 +145,15 @@ const Calendar = () => {
                 }
               )}
             >
+              <span className={styles.showDate}>
               {i + 1}
+              </span>
+              <span className={styles.hiddenValue}>
+              {`${selectedYear}년 ${selectedMonth}월 ${i+1}일`}
+              </span>
+              <span>
+                {returnPlan(`${selectedYear}년 ${selectedMonth}월 ${i+1}일`)}
+              </span>
             </div>
           );
         }
@@ -162,6 +170,13 @@ const Calendar = () => {
     console.log(selectedYear+"년"+selectedMonth+"월"+(i+1)+"일");
   }
 
+
+  const returnPlan = (d)=>{
+    const stopSync = plannerRepository.createCalendar(d,item=>
+        <div>{item}</div>);
+
+    return ()=>{stopSync()};
+  }
   return (
     <div className={styles.container}>
       <div className={styles.title}>

@@ -4,7 +4,7 @@ button {
   
   .container {
     width: 500px;
-    height: 400px;
+    min-height: 400px;
     margin: auto;
     padding: 20px 20px;
     border: 1px solid rgba(128, 128, 128, 0.267);
@@ -60,10 +60,9 @@ button {
   .container .date .weekday {
     width: calc(500px / 7);
     float: left;
-    text-align: center;
+    /* text-align: center; */
     cursor:pointer;
-    height: 50px;
-    line-height: 50px;
+    height: 100px;
   }
   
   .container .date .sunday {
@@ -80,3 +79,13 @@ button {
     font-weight: 700;
     border-radius: 50%;
   }
+  .showDate{
+    display: block;
+  }
+  .hiddenValue{
+    display: none;
+  }
+
+
+
+  
