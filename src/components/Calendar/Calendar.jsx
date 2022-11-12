@@ -2,12 +2,14 @@ import React, { useCallback, useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import styles from './Calendar.module.css';
 import uuid from 'react-uuid';
-
+import Plans from "./Plans";
+import { useAsync } from "react-async";
+import Async from 'react-async';
 
 const cx = classNames.bind(styles);
 
 const Calendar =  ({plannerRepository}) => {
-  const today = {
+    const today = {
     year: new Date().getFullYear(), //오늘 연도
     month: new Date().getMonth() + 1, //오늘 월
     date: new Date().getDate(), //오늘 날짜
@@ -157,7 +159,13 @@ const Calendar =  ({plannerRepository}) => {
               {`${selectedYear}년${selectedMonth}월${i+1}일`}
               </span>
               <span>
-                {returnPlan(`${selectedYear}년${selectedMonth}월${i + 1}일`)}
+              {/* <Plans data={}></Plans> */}
+                {/* {} */}
+                <Async promiseFn={()=>returnPlan(`${selectedYear}년${selectedMonth}월${i + 1}일`)}>
+                    {({data,error,isPending})=>{
+                        return data;
+                    }}
+                </Async>
               </span>
             </div>
           );
@@ -177,21 +185,24 @@ const Calendar =  ({plannerRepository}) => {
  
   var dayPlan = "";
 
-  const returnPlan = (info)=>{
+  const returnPlan = async(info)=>{
     
     dayPlan="";    
 
-    plannerRepository.createCalendar(info,(item)=>
+    await plannerRepository.createCalendar(info,(item)=>
     {
         console.log(item);
-        dayPlan = <div>{item.length}개</div>; 
+        dayPlan = item.length+"개"; 
     // dayPlan = <div>{i}</div>;
     }
         );
     
     return dayPlan;
    
+
   }
+
+
   return (
     <div className={styles.container}>
       <div className={styles.title}>
