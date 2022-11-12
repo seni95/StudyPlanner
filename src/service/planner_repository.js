@@ -23,7 +23,7 @@ class PlannerRepository{
             const value=snapshot.val();
             value&&onUpdate(value);
         })
-
+        
         return ()=>ref.off();
     }
 }

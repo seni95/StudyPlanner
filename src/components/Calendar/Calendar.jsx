@@ -1,9 +1,12 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import styles from './Calendar.module.css';
+import uuid from 'react-uuid';
+
+
 const cx = classNames.bind(styles);
 
-const Calendar = ({plannerRepository}) => {
+const Calendar =  ({plannerRepository}) => {
   const today = {
     year: new Date().getFullYear(), //오늘 연도
     month: new Date().getMonth() + 1, //오늘 월
@@ -14,6 +17,8 @@ const Calendar = ({plannerRepository}) => {
   const [selectedYear, setSelectedYear] = useState(today.year); //현재 선택된 연도
   const [selectedMonth, setSelectedMonth] = useState(today.month); //현재 선택된 달
   const dateTotalCount = new Date(selectedYear, selectedMonth, 0).getDate(); //선택된 연도, 달의 마지막 날짜
+
+
 
   const prevMonth = useCallback(() => {
     //이전 달 보기 보튼
@@ -105,7 +110,7 @@ const Calendar = ({plannerRepository}) => {
     return weekArr;
   }, []);
 
-  const returnDay = useCallback(() => {
+  const returnDay =useCallback(() => {
     //선택된 달의 날짜들 반환 함수
     let dayArr = [];
 
@@ -114,7 +119,8 @@ const Calendar = ({plannerRepository}) => {
       if (week[day] === nowDay) {
         for (let i = 0; i < dateTotalCount; i++) {
           dayArr.push(
-            <div onClick={()=>showDetail(i)}
+            <div 
+            onClick={()=>showDetail(i)}
               key={i + 1}
               className={cx(
                 {
@@ -149,33 +155,44 @@ const Calendar = ({plannerRepository}) => {
               {i + 1}
               </span>
               <span className={styles.hiddenValue}>
-              {`${selectedYear}년 ${selectedMonth}월 ${i+1}일`}
+              {`${selectedYear}년${selectedMonth}월${i+1}일`}
               </span>
               <span>
-                {returnPlan(`${selectedYear}년 ${selectedMonth}월 ${i+1}일`)}
+                {returnPlan(`${selectedYear}년${selectedMonth}월${i + 1}일`)?
+                "값":"로드중"}
               </span>
             </div>
           );
         }
       } else {
-        dayArr.push(<div className={styles.weekday}></div>);
+        dayArr.push(<div key={uuid()} className={styles.weekday}></div>);
       }
     }
 
     return dayArr;
-  }, [selectedYear, selectedMonth, dateTotalCount]);
-
+  },[]);
 
   const showDetail=(i)=>{
     console.log(selectedYear+"년"+selectedMonth+"월"+(i+1)+"일");
   }
 
 
-  const returnPlan = (d)=>{
-    const stopSync = plannerRepository.createCalendar(d,item=>
-        <div>{item}</div>);
+ 
+  var dayPlan = "";
 
-    return ()=>{stopSync()};
+  const returnPlan = async (info)=>{
+    
+    dayPlan="";    
+
+    plannerRepository.createCalendar(info,(item)=>
+    {
+        console.log(item);
+        dayPlan = <div>{item.length}개</div>; 
+    // dayPlan = <div>{i}</div>;
+    }
+        );
+    return dayPlan;
+   
   }
   return (
     <div className={styles.container}>
