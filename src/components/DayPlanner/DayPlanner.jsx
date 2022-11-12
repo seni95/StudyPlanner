@@ -4,18 +4,42 @@ import StopWatch from '../StopWatch/StopWatch';
 import ToDo from '../ToDo/ToDo'
 import AddToDo from '../AddToDo/AddToDo';
 
-export default function DayPlanner() {
+export default function DayPlanner({plannerRepository}) {
     const [timer, setTimer] = useState(null);
     const [todos,setTodos] = useState(()=>readTodos());
 
     const [selectedTime, setSelectedTime] = useState();
     const [timerSetting,setTimerSetting] = useState(null);
 
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth()+1;
+    const day = date.getDate();
+
+    const today = year+"년"+month+"월"+day+"일";
+
+
+
+    // useEffect(()=>{
+    //     localStorage.setItem('todos',JSON.stringify(todos));
+    //     console.log('todos 변경');
+    // },[todos]);
+
+
 
     useEffect(()=>{
-        localStorage.setItem('todos',JSON.stringify(todos));
-        console.log('todos 변경');
-    },[todos]);
+        console.log("업데이트중");
+
+        const stopSync = plannerRepository.updateData(today, todos=>{
+            setTodos(todos);
+        })
+
+        return ()=>{
+            stopSync();
+        }
+
+
+    })
 
     function readTodos(){
         const todos = localStorage.getItem('todos');
@@ -60,7 +84,7 @@ export default function DayPlanner() {
     const updateTodos = (newTodos) =>{
         const updated = [...todos, newTodos];
         setTodos(updated);
-
+        plannerRepository.saveData(today,updated);
     }
 
   return (

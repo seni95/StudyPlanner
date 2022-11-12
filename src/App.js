@@ -2,10 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import DayPlanner from './components/DayPlanner/DayPlanner';
 
-function App() {
+function App({plannerRepository}) {
   return (
   <div>
-    <DayPlanner></DayPlanner>
+    <DayPlanner plannerRepository={plannerRepository}></DayPlanner>
   </div>
   );
 }
