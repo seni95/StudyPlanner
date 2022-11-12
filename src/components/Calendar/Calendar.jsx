@@ -19,7 +19,6 @@ const Calendar =  ({plannerRepository}) => {
   const dateTotalCount = new Date(selectedYear, selectedMonth, 0).getDate(); //선택된 연도, 달의 마지막 날짜
 
 
-
   const prevMonth = useCallback(() => {
     //이전 달 보기 보튼
     if (selectedMonth === 1) {
@@ -158,8 +157,7 @@ const Calendar =  ({plannerRepository}) => {
               {`${selectedYear}년${selectedMonth}월${i+1}일`}
               </span>
               <span>
-                {returnPlan(`${selectedYear}년${selectedMonth}월${i + 1}일`)?
-                "값":"로드중"}
+                {returnPlan(`${selectedYear}년${selectedMonth}월${i + 1}일`)}
               </span>
             </div>
           );
@@ -168,9 +166,8 @@ const Calendar =  ({plannerRepository}) => {
         dayArr.push(<div key={uuid()} className={styles.weekday}></div>);
       }
     }
-
     return dayArr;
-  },[]);
+  });
 
   const showDetail=(i)=>{
     console.log(selectedYear+"년"+selectedMonth+"월"+(i+1)+"일");
@@ -180,7 +177,7 @@ const Calendar =  ({plannerRepository}) => {
  
   var dayPlan = "";
 
-  const returnPlan = async (info)=>{
+  const returnPlan = (info)=>{
     
     dayPlan="";    
 
@@ -191,6 +188,7 @@ const Calendar =  ({plannerRepository}) => {
     // dayPlan = <div>{i}</div>;
     }
         );
+    
     return dayPlan;
    
   }
