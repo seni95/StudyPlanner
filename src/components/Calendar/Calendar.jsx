@@ -5,6 +5,8 @@ import uuid from 'react-uuid';
 import Plans from "./Plans";
 import { useAsync } from "react-async";
 import Async from 'react-async';
+//Async 라이브러리를 사용하려고 했으나, returnDay에서 값을 전달하는 순서가 뒤치락 하는 바람에..
+
 
 const cx = classNames.bind(styles);
 
@@ -19,7 +21,12 @@ const Calendar =  ({plannerRepository}) => {
   const [selectedYear, setSelectedYear] = useState(today.year); //현재 선택된 연도
   const [selectedMonth, setSelectedMonth] = useState(today.month); //현재 선택된 달
   const dateTotalCount = new Date(selectedYear, selectedMonth, 0).getDate(); //선택된 연도, 달의 마지막 날짜
+  const [isloading,setIsLoading] = useState(true);
+  const forceUpdate = useCallback(()=>setIsLoading(false),[]);
 
+  useEffect(()=>{
+    setTimeout(()=>forceUpdate() , 1000);
+  },[])
 
   const prevMonth = useCallback(() => {
     //이전 달 보기 보튼
@@ -161,11 +168,12 @@ const Calendar =  ({plannerRepository}) => {
               <span>
               {/* <Plans data={}></Plans> */}
                 {/* {} */}
-                <Async promiseFn={()=>returnPlan(`${selectedYear}년${selectedMonth}월${i + 1}일`)}>
+                {/* <Async promiseFn={()=>}>
                     {({data,error,isPending})=>{
                         return data;
                     }}
-                </Async>
+                </Async> */}
+                {returnPlan(`${selectedYear}년${selectedMonth}월${i + 1}일`)}
               </span>
             </div>
           );
@@ -183,13 +191,13 @@ const Calendar =  ({plannerRepository}) => {
 
 
  
-  var dayPlan = "";
+  var dayPlan = null;
 
-  const returnPlan = async(info)=>{
+  const returnPlan =(info)=>{
     
-    dayPlan="";    
+    dayPlan=null;
 
-    await plannerRepository.createCalendar(info,(item)=>
+    plannerRepository.createCalendar(info,(item)=>
     {
         console.log(item);
         dayPlan = item.length+"개"; 
@@ -201,7 +209,8 @@ const Calendar =  ({plannerRepository}) => {
    
 
   }
-
+//   if(isloading) 
+//   return <div>달력 받아오는 중</div>;
 
   return (
     <div className={styles.container}>
