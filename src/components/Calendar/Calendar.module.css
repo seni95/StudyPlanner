@@ -8,10 +8,7 @@ button {
     margin: auto;
     padding: 20px 20px;
     border: 1px solid rgba(128, 128, 128, 0.267);
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
   }
   
   .container .title {

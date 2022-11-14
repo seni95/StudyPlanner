@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import styles from './Calendar.module.css';
 import uuid from 'react-uuid';
-import Plans from "./Plans";
 import { useAsync } from "react-async";
 import Async from 'react-async';
 //Async 라이브러리를 사용하려고 했으나, returnDay에서 값을 전달하는 순서가 뒤치락 하는 바람에..
@@ -10,7 +9,7 @@ import Async from 'react-async';
 
 const cx = classNames.bind(styles);
 
-const Calendar =  ({plannerRepository}) => {
+const Calendar =  ({plannerRepository, showDetail}) => {
     const today = {
     year: new Date().getFullYear(), //오늘 연도
     month: new Date().getMonth() + 1, //오늘 월
@@ -128,7 +127,7 @@ const Calendar =  ({plannerRepository}) => {
         for (let i = 0; i < dateTotalCount; i++) {
           dayArr.push(
             <div 
-            onClick={()=>showDetail(i)}
+            onClick={()=>showDetail(selectedYear,selectedMonth,i+1)}
               key={i + 1}
               className={cx(
                 {
@@ -185,9 +184,9 @@ const Calendar =  ({plannerRepository}) => {
     return dayArr;
   });
 
-  const showDetail=(i)=>{
-    console.log(selectedYear+"년"+selectedMonth+"월"+(i+1)+"일");
-  }
+  // const showDetail=(i)=>{
+  //   console.log(selectedYear+"년"+selectedMonth+"월"+(i+1)+"일");
+  // }
 
 
  
@@ -209,6 +208,7 @@ const Calendar =  ({plannerRepository}) => {
    
 
   }
+
 //   if(isloading) 
 //   return <div>달력 받아오는 중</div>;
 
