@@ -212,6 +212,7 @@ const Calendar =  ({plannerRepository, showDetail}) => {
 //   return <div>달력 받아오는 중</div>;
 
   return (
+    <div className={styles.wrapper}>
     <div className={styles.container}>
       <div className={styles.title}>
         <h3>
@@ -225,6 +226,7 @@ const Calendar =  ({plannerRepository, showDetail}) => {
       <div className={styles.week}>{returnWeek()}</div>
       <div className={styles.date}>{returnDay()}</div>
     </div>
+    </div>
   );
 };
 
@@ -233,7 +235,7 @@ export function PlanMiniViewer({item}){
 
   return <li className={styles.miniViewerContainer}>
     {item.map(i=>
-    <div>
+    <div key={i.id}>
       <span>{i.name}</span>
       <span>{i.time}</span>
     </div>)}    

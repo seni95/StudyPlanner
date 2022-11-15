@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import StopWatch from '../StopWatch/StopWatch';
 import ToDo from '../ToDo/ToDo'
 import AddToDo from '../AddToDo/AddToDo';
+import styles from './DayPlanner.module.css';
 
 export default function DayPlanner({plannerRepository}) {
     const [timer, setTimer] = useState(null);
@@ -85,7 +86,7 @@ export default function DayPlanner({plannerRepository}) {
     }
 
   return (
-    <div>
+    <div className={styles.container}>
         {todos.map(item=>(
             <ToDo todo={item} key={item.id} checkTime={checkTime} handleDelete={handleDelete}></ToDo>
         ))}

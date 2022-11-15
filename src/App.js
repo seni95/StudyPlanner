@@ -8,30 +8,91 @@ import styles from './App.module.css';
 
 function App({plannerRepository}) {
   const [calDetail, setCalDetail] = useState(false);
-  const [detailContent, setDetailContent] = useState(<>??</>);
+  const [detailContent, setDetailContent] = useState({});
+  const [showCal, setShowCal] = useState(false);
+  const [showPlanner, setShowPlanner] = useState(true);
+  const [controlContent, setControlContent] = useState(["planner"]);
+
+
+  const controllingContent = (newOne)=>{
+    if(calDetail===true && newOne==="calendar detail")
+    return;
+
+    var newView = [...controlContent,newOne];
+    var toHide = undefined;
+    if(newView.length>2){
+      toHide = newView[0];
+      newView.shift();
+    }
+    console.log("없어져야할것");
+    console.log(toHide);
+
+    if(toHide==="planner"){
+      setShowPlanner(false);
+    }else if(toHide==="calendar detail"){
+      setCalDetail(false);
+    }else if(toHide==="calendar"){
+      setShowCal(false);
+    }
+
+    setControlContent(newView);
+
+  }
+
 
   const showDetail = (a,b,c)=>{
-    if(calDetail==false)
+    
     setCalDetail(true) 
     
+    setDetailContent({date:`${a}년${b}월${c}일`});
+
     const stopSync = plannerRepository.updateData(`${a}년${b}월${c}일`,(item)=>{
-      setDetailContent(item);
+      setDetailContent({...detailContent, item});
       console.log(item);
     })
 
+    controllingContent("calendar detail");
     return ()=>{stopSync()};
 
-  
+
+  }
+
+
+  const controlCalendar = ()=>{
+    if(showCal===false)
+    {
+    controllingContent("calendar");
+    setShowCal(true);
+    }
+    else if(showCal===true)
+    {setCalDetail(false);
+      setShowCal(false);}  
+
+  }
+
+  const controlDayPlanner =()=>{
+    if(showPlanner===false)
+    {setShowPlanner(true);
+      controllingContent("planner");}
 
   }
 
   return (
   <div className={styles.container}>
-    <DayPlanner plannerRepository={plannerRepository}></DayPlanner>
+    <li className={styles.nav}>
+      <button onClick={controlDayPlanner}>플래너</button>
+      <button onClick={controlCalendar}>캘린더</button>
+    </li>
+    <div className={styles.contents}>
+    {showPlanner&&
+    <DayPlanner plannerRepository={plannerRepository}></DayPlanner>}
+    {showCal &&
     <Calendar showDetail={showDetail} plannerRepository={plannerRepository}></Calendar>
-    {calDetail&&
-    <ShowDetail item={detailContent}></ShowDetail>
     }
+    {calDetail&&
+    <ShowDetail item={detailContent.item} date={detailContent.date}></ShowDetail>
+    }
+    </div>
   </div>
   );
 }

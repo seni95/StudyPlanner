@@ -1,13 +1,13 @@
-import React from 'react'
-import ToDo from '../../ToDo/ToDo'
+import React from 'react';
+import ToDo from '../../ToDo/ToDo';
+import styles from './ShowDetail.module.css';
 
-export default function ShowDetail({item}) {
+export default function ShowDetail({item,date}) {
   return (
-    <div>
-        <ShowAnal item={item}></ShowAnal>
-        {item.map(i=>
-        <ToDo todo={i} key={i.id}></ToDo>)}
-        <div>왜 안보임</div>
+    <div className={styles.container}>
+      <span>{date}</span>
+      {item && 
+      <ShowAnal item={item}></ShowAnal>}
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import {IoMdCreate} from 'react-icons/io';
+import styles from './AddToDo.module.css';
 
 export default function AddToDo({updateTodos}) {
 
@@ -51,11 +52,13 @@ export default function AddToDo({updateTodos}) {
         
         <select 
         ref={goalHourRef}
+        className={styles.input}
         name="goalHour" id="goalHour">
             {hourArr}
         </select>
-        <label htmlFor="goalHour">시</label>
+        <label htmlFor="goalHour">시간</label>
         <select 
+        className={styles.input}
         ref={goalMinRef}
         name="goalMin" id="goalMin">
             {minArr}
@@ -67,12 +70,17 @@ export default function AddToDo({updateTodos}) {
   return (
     <form 
     ref={formRef}
-    action="" onSubmit={addToDo}>
+    action="" onSubmit={addToDo}
+    className={styles.form}
+    >
+        <div className={styles.inputs}>
         <div>
         <label htmlFor="name">할 일</label>
         <input 
         ref={nameRef}
-        type="text" id="name" name="name"/>
+        type="text" id="name" name="name"
+        className={styles.input}
+        />
         </div>
         <div>
         <label htmlFor="goalTime">목표시간</label>
@@ -80,14 +88,15 @@ export default function AddToDo({updateTodos}) {
         </div>
         <div>
         <label htmlFor="repeat">반복</label>
-        <select 
+        <select className={styles.input}
         ref={repeatRef}
         name="repeat" id="repeat">
             <option value="">매일</option>
             <option value="">반복안함</option>
         </select>
         </div>
-        <button><IoMdCreate></IoMdCreate></button>
+        </div>
+        <button className={styles.button}><IoMdCreate></IoMdCreate></button>
     </form>
   )
 }
