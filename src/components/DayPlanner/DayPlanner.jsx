@@ -42,14 +42,6 @@ export default function DayPlanner({plannerRepository}) {
     },[])
 
 
-
-    const timeSetting = ()=>{
-        console.log(selectedTime);
-        console.log(timer);
-
-
-    }
-
     const checkTime = (id,time)=>{
         if(timer===null){
             setTimer(id);
@@ -85,10 +77,17 @@ export default function DayPlanner({plannerRepository}) {
         plannerRepository.saveData(today,updated);
     }
 
+    const handleDelete = (id,date)=>{
+        const updated = todos.filter(item=>item.id!==id);
+        setTodos(updated);
+        plannerRepository.saveData(date,updated);
+
+    }
+
   return (
     <div>
         {todos.map(item=>(
-            <ToDo todo={item} key={item.id} checkTime={checkTime}></ToDo>
+            <ToDo todo={item} key={item.id} checkTime={checkTime} handleDelete={handleDelete}></ToDo>
         ))}
         {timer===null? null:
         <StopWatch todo={timer} updateTime={updateTime} time={timerSetting}></StopWatch>}

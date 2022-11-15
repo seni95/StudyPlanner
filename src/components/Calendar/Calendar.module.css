@@ -85,4 +85,7 @@ button {
 
 
 
-  
+  .miniViewerContainer{
+    list-style: none;
+    font-size: .5rem;
+  }

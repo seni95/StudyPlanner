@@ -14,6 +14,7 @@ class PlannerRepository{
 
     saveData(date,todos){
         firebaseDatabase.ref(`${date}/todolist`).set(todos);
+        console.log("saveData 실행");
     }
 
 
@@ -26,6 +27,9 @@ class PlannerRepository{
         
         return ()=>ref.off();
     }
+
+
+
 }
 
 export default PlannerRepository;

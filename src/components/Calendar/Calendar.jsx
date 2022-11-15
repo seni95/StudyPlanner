@@ -198,8 +198,7 @@ const Calendar =  ({plannerRepository, showDetail}) => {
 
     plannerRepository.createCalendar(info,(item)=>
     {
-        console.log(item);
-        dayPlan = item.length+"개"; 
+        dayPlan=<PlanMiniViewer item={item}></PlanMiniViewer>;
     // dayPlan = <div>{i}</div>;
     }
         );
@@ -228,5 +227,19 @@ const Calendar =  ({plannerRepository, showDetail}) => {
     </div>
   );
 };
+
+
+export function PlanMiniViewer({item}){
+
+  return <li className={styles.miniViewerContainer}>
+    {item.map(i=>
+    <div>
+      <span>{i.name}</span>
+      <span>{i.time}</span>
+    </div>)}    
+  </li>
+
+}
+
 
 export default Calendar;
