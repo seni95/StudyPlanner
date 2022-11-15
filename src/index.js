@@ -4,13 +4,28 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import PlannerRepository from './service/planner_repository';
+import { createBrowserRouter, RouterProvider,Route } from 'react-router-dom';
+import Login from './components/Login/login';
+
 
 const plannerRepository = new PlannerRepository();
+
+const router = createBrowserRouter([
+  {
+    path:"/",
+    element:<Login></Login>
+  },
+  {
+    path:"/studyPlanner",
+    element: <App plannerRepository={plannerRepository}/>
+  }
+
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App plannerRepository={plannerRepository}/>
+    <RouterProvider router={router}></RouterProvider>
   </React.StrictMode>
 );
 

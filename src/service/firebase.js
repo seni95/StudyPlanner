@@ -21,3 +21,4 @@
 
   export default firebaseApp;
   export const firebaseDatabase = firebaseApp.database();
+  
