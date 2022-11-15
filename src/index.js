@@ -6,14 +6,18 @@ import reportWebVitals from './reportWebVitals';
 import PlannerRepository from './service/planner_repository';
 import { createBrowserRouter, RouterProvider,Route } from 'react-router-dom';
 import Login from './components/Login/login';
+import AuthService from './service/auth_service';
 
 
 const plannerRepository = new PlannerRepository();
+const authService = new AuthService();
+
+
 
 const router = createBrowserRouter([
   {
     path:"/",
-    element:<Login></Login>
+    element:<Login authService={authService}></Login>,
   },
   {
     path:"/studyPlanner",
