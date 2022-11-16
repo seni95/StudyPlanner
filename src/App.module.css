@@ -17,3 +17,23 @@ li{
     flex:1 1 auto;
     min-height: 0;
 }
+
+.navButton{
+    /* border-top:1px solid black;
+    border-right:1px solid black; */
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    color:var(--color-text);
+    height: 100%;
+    background-color: var(--color-grey);
+
+}
+
+.navButton:hover{
+    background-color: var(--color-accent);
+
+}
+
+.viewContents{
+    background-color: var(--color-accent);
+}

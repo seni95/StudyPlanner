@@ -108,9 +108,9 @@ function App() {
   return (
   <div className={styles.container}>
     <li className={styles.nav}>
-      <button onClick={controlDayPlanner}>플래너</button>
-      <button onClick={controlCalendar}>캘린더</button>
-      <button onClick={onLogOut}>로그아웃</button>
+      <button className={showPlanner===true?`${styles.viewContents} ${styles.navButton}`: styles.navButton} onClick={controlDayPlanner}>플래너</button>
+      <button className={showCal===true?`${styles.viewContents} ${styles.navButton}`: styles.navButton} onClick={controlCalendar}>캘린더</button>
+      <button className={styles.navButton} onClick={onLogOut}>로그아웃</button>
     </li>
     <div className={styles.contents}>
     {showPlanner&&
@@ -122,7 +122,6 @@ function App() {
     <ShowDetail item={detailContent.item} date={detailContent.date}></ShowDetail>
     }
 
-    {console.log(userInfo)}
     </div>
   </div>
   );

@@ -4,6 +4,7 @@ import styles from './Calendar.module.css';
 import uuid from 'react-uuid';
 import { useAsync } from "react-async";
 import Async from 'react-async';
+import useTimeCalculator from "./hooks/useTimeCalculator";
 //Async 라이브러리를 사용하려고 했으나, returnDay에서 값을 전달하는 순서가 뒤치락 하는 바람에..
 
 
@@ -232,16 +233,13 @@ const Calendar =  ({plannerRepository, showDetail}) => {
 
 
 export function PlanMiniViewer({item}){
-
+  const {total} = useTimeCalculator(item);
   return <li className={styles.miniViewerContainer}>
-    {item.map(i=>
-    <div key={i.id}>
-      <span>{i.name}</span>
-      <span>{i.time}</span>
-    </div>)}    
+    {total}
   </li>
 
 }
+
 
 
 export default Calendar;
