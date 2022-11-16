@@ -2,16 +2,28 @@ import logo from './logo.svg';
 import DayPlanner from './components/DayPlanner/DayPlanner';
 import Calendar from './components/Calendar/Calendar';
 import ShowDetail from './components/Calendar/ShowDetail/ShowDetail';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styles from './App.module.css';
+import { Navigate, useLocation, useNavigate, useNavigation } from 'react-router-dom';
+import PlannerRepository from './service/planner_repository';
 
-function App({plannerRepository}) {
+
+
+function App() {
   const [calDetail, setCalDetail] = useState(false);
   const [detailContent, setDetailContent] = useState({});
   const [showCal, setShowCal] = useState(false);
   const [showPlanner, setShowPlanner] = useState(true);
   const [controlContent, setControlContent] = useState(["planner"]);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useState(location.state.id);
+
+
+  const plannerRepository = new PlannerRepository(userInfo);
+
 
 
   const controllingContent = (newOne)=>{
@@ -77,11 +89,28 @@ function App({plannerRepository}) {
 
   }
 
+
+  const onLogOut = ()=>{
+    setUserInfo(null);
+    navigate("/");
+  }
+
+
+  useEffect(()=>
+  {
+    if(userInfo===null)
+    navigate("/");
+    console.log(userInfo);
+  },[userInfo]);
+
+ 
+
   return (
   <div className={styles.container}>
     <li className={styles.nav}>
       <button onClick={controlDayPlanner}>플래너</button>
       <button onClick={controlCalendar}>캘린더</button>
+      <button onClick={onLogOut}>로그아웃</button>
     </li>
     <div className={styles.contents}>
     {showPlanner&&
@@ -92,6 +121,8 @@ function App({plannerRepository}) {
     {calDetail&&
     <ShowDetail item={detailContent.item} date={detailContent.date}></ShowDetail>
     }
+
+    {console.log(userInfo)}
     </div>
   </div>
   );
