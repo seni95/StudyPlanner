@@ -85,11 +85,23 @@ export default function DayPlanner({plannerRepository}) {
 
     }
 
+    const checkStatus = (id,status)=>{
+        const updated = todos.map(item=>{
+            if(item.id===id){
+                return {...item, status}
+            } return item;
+        })
+        setTodos(updated);
+        plannerRepository.saveData(today,updated);
+    }
+
   return (
     <div className={styles.container}>
-        {todos.map(item=>(
-            <ToDo todo={item} key={item.id} checkTime={checkTime} handleDelete={handleDelete}></ToDo>
+       <div className={styles.todos}>
+       {todos.map(item=>(
+            <ToDo status={item.status} todo={item} key={item.id} checkTime={checkTime} handleDelete={handleDelete} checkStatus={checkStatus}></ToDo>
         ))}
+       </div>
         {timer===null? null:
         <StopWatch todo={timer} updateTime={updateTime} time={timerSetting}></StopWatch>}
         <AddToDo updateTodos={updateTodos}></AddToDo>
