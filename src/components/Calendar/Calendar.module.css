@@ -9,7 +9,7 @@ button {
   
   .container {
     width:400px;
-    height: auto;
+    height: 88%;
     margin: auto;
     border: 1px solid rgba(128, 128, 128, 0.267);
     position: relative;
@@ -56,7 +56,7 @@ button {
   }
   
   .container .date {
-    margin-top: 20px;
+    height: auto;
   }
   
   .container .date .weekday {
