@@ -19,8 +19,6 @@ export default function DayPlanner({plannerRepository}) {
 
     const today = year+"년"+month+"월"+day+"일";
 
-
-
     // useEffect(()=>{
     //     localStorage.setItem('todos',JSON.stringify(todos));
     //     console.log('todos 변경');

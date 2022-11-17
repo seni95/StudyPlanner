@@ -19,7 +19,7 @@ function App() {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const [userInfo, setUserInfo] = useState(location.state.id);
+  const [userInfo, setUserInfo] = useState(location.state===null?null:location.state.id);
 
 
   const plannerRepository = new PlannerRepository(userInfo);
