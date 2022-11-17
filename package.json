@@ -1,5 +1,5 @@
 {
-  "homepage": "https://github.com/seni95/StudyPlanner",
+  "homepage": "https://github.com/seni95/StudyPlanner/",
   "name": "planner",
   "version": "0.1.0",
   "private": true,
@@ -17,7 +17,7 @@
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "react-uuid": "^2.0.0",
-    "web-vitals": "^2.1.0",
+    "web-vitals": "^2.1.0"
   },
   "scripts": {
     "predeploy": "npm run build",
