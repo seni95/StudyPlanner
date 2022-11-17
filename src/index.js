@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import PlannerRepository from './service/planner_repository';
-import { createBrowserRouter, RouterProvider,Route } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider,Route, createMemoryRouter } from 'react-router-dom';
 import Login from './components/Login/login';
 import AuthService from './service/auth_service';
 
@@ -17,7 +17,7 @@ userInfo =user;
 }
 
 
-const router = createBrowserRouter([
+const routes = [
   {
     path:"/",
     element:<Login authService={authService}></Login>,
@@ -26,8 +26,12 @@ const router = createBrowserRouter([
     path:"/studyPlanner",
     element: <App/>
   }
+]
 
-]);
+const router = createMemoryRouter(routes,{
+  initialEntries:["/StudyPlanner"],
+  initialIndex:1
+})
 
 
 
