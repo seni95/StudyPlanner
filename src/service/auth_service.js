@@ -15,4 +15,8 @@ export default class AuthService{
         }
     }
 
+    loveme(){
+        console.log("love me");
+    }
+
 }

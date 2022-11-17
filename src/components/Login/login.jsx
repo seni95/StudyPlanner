@@ -13,7 +13,7 @@ export default function Login({authService}) {
     const onLogin = (e)=>{
     authService.login(e.currentTarget.name)
     .then(data=>saveLoginData(data.user.uid));
-    // console.log(e.currentTarget.name);
+    console.log(e.currentTarget.name);
 
     }
     
@@ -26,9 +26,8 @@ export default function Login({authService}) {
     <section>
         <h1>Login</h1>
         <ul>
-            <li><button name="Google" onClick={()=>onLogin}>Google로 로그인</button></li>
+            <li><button name="Google" onClick={onLogin}>Google로 로그인</button></li>
             <li><button>Google로 로그인</button></li>
-
         </ul>
     </section>
   )
