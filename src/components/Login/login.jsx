@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
+import styles from './login.module.css';
 
 export default function Login({authService}) {
     const navigate = useNavigate();
@@ -23,12 +24,14 @@ export default function Login({authService}) {
     
 
     return (
-    <section>
+    <section className={styles.container}>
         <h1>Login</h1>
         <ul>
             <li><button name="Google" onClick={onLogin}>Google로 로그인</button></li>
             <li><button>Google로 로그인</button></li>
-            <li>제대로 됨</li>
+            <form>
+                
+            </form>
         </ul>
     </section>
   )
