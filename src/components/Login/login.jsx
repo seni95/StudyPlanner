@@ -28,6 +28,7 @@ export default function Login({authService}) {
         <ul>
             <li><button name="Google" onClick={onLogin}>Google로 로그인</button></li>
             <li><button>Google로 로그인</button></li>
+            <li>제대로 됨</li>
         </ul>
     </section>
   )
