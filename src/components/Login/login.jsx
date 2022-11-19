@@ -24,11 +24,14 @@ export default function Login({authService}) {
 
     return (
     <section className={styles.container}>
-        <h1>Login</h1>
+        <h1 className={styles.title}>스터디 플래너</h1>
+        <div className={styles.loginForm}>
+        <h1 className={styles.loginTitle}>Login</h1>
         <ul>
             <li><button name="Google" onClick={onLogin}>Google로 로그인</button></li>
             <li><button name="Github" onClick={onLogin}>Github로 로그인</button></li>
         </ul>
+        </div>
     </section>
   )
 }
