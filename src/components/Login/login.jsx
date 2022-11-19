@@ -14,7 +14,6 @@ export default function Login({authService}) {
     const onLogin = (e)=>{
     authService.login(e.currentTarget.name)
     .then(data=>saveLoginData(data.user.uid));
-    console.log(e.currentTarget.name);
 
     }
     
@@ -28,10 +27,7 @@ export default function Login({authService}) {
         <h1>Login</h1>
         <ul>
             <li><button name="Google" onClick={onLogin}>Google로 로그인</button></li>
-            <li><button>Google로 로그인</button></li>
-            <form>
-                
-            </form>
+            <li><button name="Github" onClick={onLogin}>Github로 로그인</button></li>
         </ul>
     </section>
   )

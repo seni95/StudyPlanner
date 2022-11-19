@@ -1,4 +1,4 @@
-import { firebaseAuth, googleProvider } from "./firebase";
+import { firebaseAuth, googleProvider,githubProvider } from "./firebase";
 
 export default class AuthService{
 
@@ -12,11 +12,11 @@ export default class AuthService{
         switch(providerName){
             case 'Google':
                 return googleProvider;
+            case 'Github':
+                return githubProvider;
         }
     }
 
-    loveme(){
-        console.log("love me");
-    }
+    
 
 }
