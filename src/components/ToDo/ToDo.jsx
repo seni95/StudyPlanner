@@ -9,8 +9,8 @@ export default function ToDo({status,todo,checkTime,handleDelete,checkStatus}) {
         checkTime(id,time);
     }
 
-    const deleteThis = (id,date)=>{
-        handleDelete(id,date);
+    const deleteThis = (id)=>{
+        handleDelete(id);
     }
 
     const updateStatus =(id, status)=>{
@@ -26,7 +26,7 @@ export default function ToDo({status,todo,checkTime,handleDelete,checkStatus}) {
             <span>{todo.time}</span>
             <span>목표시간 :{todo.goalTime}</span>
            <button className={styles.icon} onClick={()=>{showTimer(todo.id,todo.time)}}><FcAlarmClock></FcAlarmClock></button>
-           <button className={styles.icon} onClick={()=>{deleteThis(todo.id, todo.date)}}><RiDeleteBin2Line></RiDeleteBin2Line></button>
+           <button className={styles.icon} onClick={()=>{deleteThis(todo.id)}}><RiDeleteBin2Line></RiDeleteBin2Line></button>
         </label>
 
     </li>

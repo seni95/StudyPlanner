@@ -76,10 +76,10 @@ export default function DayPlanner({plannerRepository}) {
         plannerRepository.saveData(today,updated);
     }
 
-    const handleDelete = (id,date)=>{
+    const handleDelete = (id)=>{
         const updated = todos.filter(item=>item.id!==id);
         setTodos(updated);
-        plannerRepository.saveData(date,updated);
+        plannerRepository.saveData(today,updated);
 
     }
 
