@@ -6,8 +6,8 @@ class PlannerRepository{
         this.userInfo = info;
     }
 
-    updateData(date,onUpdate){
-        const ref=firebaseDatabase.ref(`${this.userInfo}/${date}/todolist`);
+    updateData(directory,onUpdate){
+        const ref=firebaseDatabase.ref(`${this.userInfo}/${directory}/todolist`);
         ref.on('value',snapshot=>{
             const value=snapshot.val();
             value&&onUpdate(value);
@@ -18,7 +18,6 @@ class PlannerRepository{
 
     saveData(date,todos){
         firebaseDatabase.ref(`${this.userInfo}/${date}/todolist`).set(todos);
-        console.log("saveData 실행");
     }
 
 
@@ -32,7 +31,9 @@ class PlannerRepository{
         return ()=>ref.off();
     }
 
-
+    createRepeatToDo(todos){
+        const ref=firebaseDatabase.ref(`${this.userInfo}/repeatTodos/todolist`).set(todos);
+    }
 
 }
 

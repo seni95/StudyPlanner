@@ -4,8 +4,15 @@ import styles from './AddToDo.module.css';
 
 export default function AddToDo({updateTodos}) {
 
-    const [repeatCycle, setRepeatCycle] = useState("none");
-    const [cyclePattern,setCyclePattern] = useState("weekday");
+    
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth()+1;
+    const day = date.getDate();
+
+    const [today,setToday] = useState(year+"년"+month+"월"+day+"일");
+
+
 
     const formRef = useRef();
     const nameRef=useRef();
@@ -27,12 +34,12 @@ export default function AddToDo({updateTodos}) {
             status:'active',
             time:"00:00:00",
             repeat:repeatRef.current.value,
-            goalTime
+            goalTime,
+            startDay:today
         }
 
         formRef.current.reset();
         updateTodos(Todo);
-        console.log(goalTime);
 
     }
 
@@ -70,57 +77,6 @@ export default function AddToDo({updateTodos}) {
     }
 
    
-    const returnCycle=useCallback(()=>{
-        if(repeatCycle=="everyday"|| repeatCycle=="none")
-        return;
-
-        return <>
-        <select onChange={changeCyclePattern}>
-            <option value="weekday">요일별</option>
-            <option value="day">날짜별</option>
-            <option value="period">기간별</option>
-        </select>
-        {returnCycleDetail()}
-        </>
-
-    },[cyclePattern]);
-
-    const returnCycleDetail = useCallback(()=>{
-        if(cyclePattern==="weekday")
-        {return <select>
-            <option value="mon">월</option>
-            <option value="mon">화</option>
-            <option value="mon">수</option>
-            <option value="mon">목</option>
-            <option value="mon">금</option>
-            <option value="mon">토</option>
-            <option value="mon">일</option>
-        </select>}
-
-        var dayArr = [];
-        for(var i=0; i<31; i++)
-        {
-            dayArr.push(<option>매월 {i}일마다</option>)
-        }
-
-        if(cyclePattern==="day")
-        {return <select>
-            {dayArr}
-        </select>}
-
-        if(cyclePattern==="period")
-        {return <><input type="number"></input>일마다</>
-        }
-    },[cyclePattern])
-
-
-    const changeCyclePattern=(e)=>{
-        setCyclePattern(e.target.value);
-    }
-    const changeRepeatCycle = (e)=>{
-        setRepeatCycle(e.target.value);
-    }
-
   return (
     <form 
     ref={formRef}
@@ -144,15 +100,10 @@ export default function AddToDo({updateTodos}) {
         <label htmlFor="repeat">반복</label>
         <select className={styles.input}
         ref={repeatRef}
-        name="repeat" id="repeat"
-        onChange={changeRepeatCycle}>
-            <option value="everyday">매일</option>
+        name="repeat" id="repeat">
+            <option value="everyday">반복</option>
             <option value="none">반복안함</option>
-            <option value="setCycle">반복주기 설정</option>
         </select>
-        <div id="cycleDetail">
-        {returnCycle()}
-        </div>
         </div>
         </div>
         <button className={styles.button}><IoMdCreate></IoMdCreate></button>

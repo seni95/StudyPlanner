@@ -1,13 +1,16 @@
 //오늘 할 일을 감싸는 컴포넌트
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import StopWatch from '../StopWatch/StopWatch';
 import ToDo from '../ToDo/ToDo'
 import AddToDo from '../AddToDo/AddToDo';
 import styles from './DayPlanner.module.css';
+import { resolvePath } from 'react-router-dom';
 
 export default function DayPlanner({plannerRepository}) {
     const [timer, setTimer] = useState(null);
     const [todos,setTodos] = useState([]);
+    const [repeatTodos, setRepeatTodos] = useState([]);
+    const [todayRepeat, setTodayRepeat] = useState([]);
 
     const [selectedTime, setSelectedTime] = useState();
     const [timerSetting,setTimerSetting] = useState(null);
@@ -24,22 +27,70 @@ export default function DayPlanner({plannerRepository}) {
     //     console.log('todos 변경');
     // },[todos]);
 
+    const loadingData =()=>{
+        //오늘 날짜로 등록된 todo를 받아옴
+
+            const stopSync = plannerRepository.updateData(today, todos=>{
+                setTodos(todos);
+            })
+    
+            
+            return ()=>{
+                stopSync();
+            }
+
+    }
 
 
-    useEffect(()=>{
-        console.log("업데이트중");
 
+
+    const loadingData2=()=>new Promise((resolve,reject)=>{
+
+        var result = null;
         const stopSync = plannerRepository.updateData(today, todos=>{
-            setTodos(todos);
+            result = "실행";
+            // resolve(todos);
         })
-
+        resolve(result);
+        console.log("1번째");
+        
         return ()=>{
             stopSync();
         }
 
+    })
 
+
+    const loadingData3=data=>new Promise((resolve,reject)=>{
+         const stopSync = plannerRepository.updateData("repeatTodos",todos=>{
+            resolve([...todos,...data])
+        })
+
+        console.log("2번째");
+        
+        return ()=>{
+            stopSync();
+        }
+    })
+
+
+
+
+
+    
+
+
+  
+
+    useEffect(()=>{
+        loadingData();
     },[])
 
+    useEffect(()=>{
+        loadingData2().then(data=>console.log(data+"??"));
+        // then(data=>loadingData3(data))
+        // .then(data=>console.log(data+"??"));
+    },[])
 
     const checkTime = (id,time)=>{
         if(timer===null){
@@ -74,13 +125,18 @@ export default function DayPlanner({plannerRepository}) {
         const updated = [...todos, newTodos];
         setTodos(updated);
         plannerRepository.saveData(today,updated);
+        if(newTodos.repeat==="everyday")
+        {
+        const isRepeated = [...repeatTodos,newTodos];
+        setRepeatTodos(isRepeated)    
+        plannerRepository.createRepeatToDo(isRepeated)}
     }
 
     const handleDelete = (id)=>{
         const updated = todos.filter(item=>item.id!==id);
         setTodos(updated);
         plannerRepository.saveData(today,updated);
-
+        
     }
 
     const checkStatus = (id,status)=>{
@@ -100,10 +156,10 @@ export default function DayPlanner({plannerRepository}) {
             <ToDo status={item.status} todo={item} key={item.id} checkTime={checkTime} handleDelete={handleDelete} checkStatus={checkStatus}></ToDo>
         ))}
        </div>
+       
         {timer===null? null:
         <StopWatch todo={timer} updateTime={updateTime} time={timerSetting}></StopWatch>}
         <AddToDo updateTodos={updateTodos}></AddToDo>
-
     </div>
   )
 }
