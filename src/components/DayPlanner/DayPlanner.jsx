@@ -30,13 +30,13 @@ export default function DayPlanner({plannerRepository}) {
     const loadingData =()=>{
         //오늘 날짜로 등록된 todo를 받아옴
 
-            const stopSync = plannerRepository.updateData(today, todos=>{
+            const loadingTodos = plannerRepository.updateData(today, todos=>{
                 setTodos(todos);
             })
     
             
             return ()=>{
-                stopSync();
+                loadingTodos();
             }
 
     }
@@ -44,53 +44,43 @@ export default function DayPlanner({plannerRepository}) {
 
 
 
-    const loadingData2=()=>new Promise((resolve,reject)=>{
-
-        var result = null;
-        const stopSync = plannerRepository.updateData(today, todos=>{
-            result = "실행";
-            // resolve(todos);
-        })
-        resolve(result);
-        console.log("1번째");
-        
-        return ()=>{
-            stopSync();
-        }
-
-    })
-
-
-    const loadingData3=data=>new Promise((resolve,reject)=>{
-         const stopSync = plannerRepository.updateData("repeatTodos",todos=>{
-            resolve([...todos,...data])
+    const loadingData2=()=>{
+        const stopSync = plannerRepository.updateData("repeatTodos",todos=>{
+            setRepeatTodos(todos)
+            const a = todos.map(i=>i.repeat==="everyday"?i:null);
+            const b = a.filter(i=>i!==null);
+            setTodayRepeat(b);
         })
 
-        console.log("2번째");
-        
         return ()=>{
             stopSync();
-        }
-    })
+        } 
+       
+    }
 
 
+   const loadingData3=()=>{
 
-
+   }
 
     
 
+    const checkError=()=>{
+        console.log(todayRepeat);
 
+    }
   
 
     useEffect(()=>{
         loadingData();
+        loadingData2();
+        
     },[])
 
     useEffect(()=>{
-        loadingData2().then(data=>console.log(data+"??"));
-        // then(data=>loadingData3(data))
-        // .then(data=>console.log(data+"??"));
     },[])
+
+    
 
     const checkTime = (id,time)=>{
         if(timer===null){
@@ -160,6 +150,7 @@ export default function DayPlanner({plannerRepository}) {
         {timer===null? null:
         <StopWatch todo={timer} updateTime={updateTime} time={timerSetting}></StopWatch>}
         <AddToDo updateTodos={updateTodos}></AddToDo>
+        <button onClick={checkError}>??</button>
     </div>
   )
 }
