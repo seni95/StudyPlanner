@@ -22,21 +22,34 @@ export default function DayPlanner({plannerRepository}) {
 
     const today = year+"년"+month+"월"+day+"일";
 
+
     // useEffect(()=>{
     //     localStorage.setItem('todos',JSON.stringify(todos));
     //     console.log('todos 변경');
     // },[todos]);
 
-    const loadingData =()=>{
+    const loadingData =async ()=>{
         //오늘 날짜로 등록된 todo를 받아옴
-
-            const loadingTodos = plannerRepository.updateData(today, todos=>{
+            var todayTodo=[];
+            const loadingTodos = await plannerRepository.updateData(today, todos=>{
                 setTodos(todos);
+                todayTodo=[...todos];
             })
-    
+            const loadingRepeat = await plannerRepository.updateData("repeatTodos",todos=>{
+                setRepeatTodos(todos)
+                const a = todos.map(i=>i.repeat==="everyday"?i:null);
+                const b = a.filter(i=>i!==null);
+                setTodayRepeat(b);
+                const c = b.filter(x=>!todayTodo.includes(x));
+                todayTodo=[...todayTodo, ...c];
+            })
             
             return ()=>{
                 loadingTodos();
+                loadingRepeat();
+                const updated= [...todayTodo];
+                setTodos(updated);
+                console.log(todayTodo);
             }
 
     }
@@ -44,38 +57,19 @@ export default function DayPlanner({plannerRepository}) {
 
 
 
-    const loadingData2=()=>{
-        const stopSync = plannerRepository.updateData("repeatTodos",todos=>{
-            setRepeatTodos(todos)
-            const a = todos.map(i=>i.repeat==="everyday"?i:null);
-            const b = a.filter(i=>i!==null);
-            setTodayRepeat(b);
-        })
+    const [isloading,setIsLoading] = useState(true);
+    const forceUpdate = useCallback(()=>setIsLoading(false),[]);
 
-        return ()=>{
-            stopSync();
-        } 
-       
-    }
-
-
-   const loadingData3=()=>{
-
-   }
-
-    
-
-    const checkError=()=>{
-        console.log(todayRepeat);
-
-    }
-  
 
     useEffect(()=>{
-        loadingData();
-        loadingData2();
-        
-    },[])
+        setTimeout(()=>forceUpdate() , 1000);
+      },[])
+
+  
+
+    useEffect(()=>
+    {loadingData();}
+    ,[isloading])
 
     useEffect(()=>{
     },[])
@@ -146,11 +140,9 @@ export default function DayPlanner({plannerRepository}) {
             <ToDo status={item.status} todo={item} key={item.id} checkTime={checkTime} handleDelete={handleDelete} checkStatus={checkStatus}></ToDo>
         ))}
        </div>
-       
         {timer===null? null:
         <StopWatch todo={timer} updateTime={updateTime} time={timerSetting}></StopWatch>}
-        <AddToDo updateTodos={updateTodos}></AddToDo>
-        <button onClick={checkError}>??</button>
+        <AddToDo updateTodos={updateTodos}></AddToDo>        
     </div>
   )
 }
