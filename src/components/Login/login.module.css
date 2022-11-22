@@ -29,3 +29,14 @@
 .loginTitle{
 
 }
+
+
+@media (max-width:780px){
+    .container{
+        width:auto;
+        padding-top: 0;
+    }
+    .loginForm{
+        width: auto;
+    }
+}
