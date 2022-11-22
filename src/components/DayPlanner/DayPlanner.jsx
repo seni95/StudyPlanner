@@ -40,16 +40,17 @@ export default function DayPlanner({plannerRepository}) {
                 const a = todos.map(i=>i.repeat==="everyday"?i:null);
                 const b = a.filter(i=>i!==null);
                 setTodayRepeat(b);
-                const c = b.filter(x=>!todayTodo.includes(x));
-                todayTodo=[...todayTodo, ...c];
+                console.log(b);
+                const c = b.filter(x=>todayTodo.includes(x));
+                const updated=[...todayTodo, ...c];
+                setTodos(updated);
+                console.log(updated);
             })
             
             return ()=>{
                 loadingTodos();
                 loadingRepeat();
-                const updated= [...todayTodo];
-                setTodos(updated);
-                console.log(todayTodo);
+                
             }
 
     }
@@ -69,7 +70,7 @@ export default function DayPlanner({plannerRepository}) {
 
     useEffect(()=>
     {loadingData();}
-    ,[isloading])
+    ,[])
 
     useEffect(()=>{
     },[])
@@ -112,7 +113,7 @@ export default function DayPlanner({plannerRepository}) {
         if(newTodos.repeat==="everyday")
         {
         const isRepeated = [...repeatTodos,newTodos];
-        setRepeatTodos(isRepeated)    
+        setRepeatTodos(isRepeated);
         plannerRepository.createRepeatToDo(isRepeated)}
     }
 
