@@ -41,7 +41,7 @@ export default function DayPlanner({plannerRepository}) {
                 const b = a.filter(i=>i!==null);
                 setTodayRepeat(b);
                 console.log(b);
-                const c = b.filter(x=>todayTodo.includes(x));
+                const c = b.filter(x=>!todayTodo.includes(x));
                 const updated=[...todayTodo, ...c];
                 setTodos(updated);
                 console.log(updated);

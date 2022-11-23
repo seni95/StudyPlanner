@@ -16,14 +16,13 @@ html.dark{
 }
 
 #root{
-  height:70%;
   background-color:var(--color-bg-dark);
-  border-radius: 1rem;
   display: flex;
   flex-direction: column;
   -webkit-box-shadow: 27px 4px 50px -30px #000000; 
   box-shadow: 27px 4px 50px -30px #000000;
-  overflow: hidden;
+    height: 624px;
+    overflow: hidden;
 }
 
 

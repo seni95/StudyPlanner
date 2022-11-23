@@ -1,29 +1,51 @@
 
 
 .container{
-    width:500px;
-    background-image: url("https://images.pexels.com/photos/10120096/pexels-photo-10120096.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top:30%;
+    width: 500px;
+    height: 624px;
+    margin: 0 0 3px;
+    padding: 27px 28px;
+    border: solid 1px #707070;
+    background-color: #181c25;
 }
 
+.designLine{
+    width: 444px;
+  height: 570px;
+  padding: 117px 0px 0px 24px;
+  border: solid 1px #707070;
+}
 
 
 .title{
-    margin-bottom:30%;
-    color:var(--color-grey);
+    width: 155px;
+  height: 70px;
+  font-family: SegoeUI;
+  font-size: 20px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #707070;
 }
 
 .loginForm{
-    background-color: var(--color-bg);
+    /* background-color: var(--color-bg);
     width:300px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid var(--color-text);
+    border: 2px solid var(--color-text); */
+    width: 500px;
+    height: 300px;
+    background-color: #fff;
+    padding: 43px 87px 84px 43px;
+    position: relative;
+    right: 55px;
+    top:130px;
+    display: flex;
 }
 
 .loginTitle{
@@ -31,12 +53,48 @@
 }
 
 
-@media (max-width:780px){
-    .container{
-        width:auto;
-        padding-top: 0;
-    }
-    .loginForm{
-        width: auto;
-    }
+.loginSelector{
+
+    
 }
+
+.googleLogin{
+    width: 202px;
+  height: 42px;
+  margin: 4px 0px 29px 0;
+  padding: 7px 38px;
+  border: solid 1px #707070;
+  background-color: #707070;
+  color:white;
+}
+
+.githubLogin{
+    width: 202px;
+  height: 42px;
+  margin: 20px 0px 6px 0;
+  padding: 7px 26px;
+  border: solid 1px #707070;
+  background-color: #707070;
+color:white;
+}
+
+.googleLogin:hover,.githubLogin:hover{
+    background-color: #181c25;
+
+}
+
+.content{
+    width: 128px;
+    height: 123px;
+    margin: 0 0 0 40px;
+    font-family: SegoeUI;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.13;
+    letter-spacing: normal;
+    text-align: center;
+    color: #707070;
+}
+

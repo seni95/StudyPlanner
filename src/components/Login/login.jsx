@@ -24,13 +24,20 @@ export default function Login({authService}) {
 
     return (
     <section className={styles.container}>
-        <h1 className={styles.title}>스터디 플래너</h1>
+        <div className={styles.designLine}>
+        <h1 className={styles.title}>Study/Work <br /> Planner </h1>
         <div className={styles.loginForm}>
-        <h1 className={styles.loginTitle}>Login</h1>
-        <ul>
-            <li><button name="Google" onClick={onLogin}>Google로 로그인</button></li>
-            <li><button name="Github" onClick={onLogin}>Github로 로그인</button></li>
+        <ul className={styles.loginSelector}>
+            <li><button className={styles.googleLogin} name="Google" onClick={onLogin}>Google로 로그인</button></li>
+            <li><button className={styles.githubLogin}name="Github" onClick={onLogin}>Github로 로그인</button></li>
         </ul>
+        <span className={styles.content}>
+        CONTENT <br />
+1. 플래너 / 타이머  <br />
+2. 캘린더   <br />
+3. 분석 페이 <br />
+        </span>
+        </div>
         </div>
     </section>
   )
