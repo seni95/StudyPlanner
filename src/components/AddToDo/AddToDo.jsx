@@ -93,7 +93,7 @@ export default function AddToDo({updateTodos}) {
         />
         </div>
         <div>
-        <label htmlFor="goalTime">목표시간</label>
+        <label htmlFor="goalTime">목표시간</label><br></br>
         {createTimeSelector()}
         </div>
         <div>

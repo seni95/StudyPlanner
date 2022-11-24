@@ -18,6 +18,10 @@ li{
     min-height: 0;
 }
 
+.nav{
+    height: 30px;
+}
+
 .navButton{
     /* border-top:1px solid black;
     border-right:1px solid black; */
@@ -25,15 +29,18 @@ li{
     border-top-left-radius: 10px;
     color:var(--color-text);
     height: 100%;
+    width:70px;
     background-color: var(--color-grey);
 
 }
 
 .navButton:hover{
-    background-color: var(--color-accent);
-
+    background-color: var(--color-main);
+    color:var(--color-white);
 }
 
 .viewContents{
-    background-color: var(--color-accent);
+    background-color: var(--color-main);
+    color:var(--color-white);
+
 }

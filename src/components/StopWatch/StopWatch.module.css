@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+    font-weight: bold;
+    width: 100%;
+}
+
+.pic{
+    font-size:5rem;
+}

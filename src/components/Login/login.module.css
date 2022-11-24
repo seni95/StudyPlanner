@@ -5,15 +5,15 @@
     height: 624px;
     margin: 0 0 3px;
     padding: 27px 28px;
-    border: solid 1px #707070;
-    background-color: #181c25;
+    border: solid 1px var(--color-sub);
+    background-color: var(--color-main);
 }
 
 .designLine{
     width: 444px;
   height: 570px;
   padding: 117px 0px 0px 24px;
-  border: solid 1px #707070;
+  border: solid 1px var(--color-sub);
 }
 
 
@@ -28,7 +28,7 @@
   line-height: 1.5;
   letter-spacing: normal;
   text-align: left;
-  color: #707070;
+  color: var(--color-sub);
 }
 
 .loginForm{
@@ -63,8 +63,8 @@
   height: 42px;
   margin: 10px 0px 29px 0;
   padding: 7px 38px;
-  border: solid 1px #707070;
-  background-color: #707070;
+  border: solid 1px var(--color-sub);
+  background-color: var(--color-sub);
   color:white;
   border: 1px solid rgba(0,0,0,0.21);
   border-bottom-color: rgba(0,0,0,0.34);
@@ -81,8 +81,8 @@
   height: 42px;
   margin: 0px 0px 6px 0;
   padding: 7px 26px;
-  border: solid 1px #707070;
-  background-color: #707070;
+  border: solid 1px var(--color-sub);
+  background-color: var(--color-sub);
 color:white;
 border: 1px solid rgba(0,0,0,0.21);
   border-bottom-color: rgba(0,0,0,0.34);
@@ -94,7 +94,7 @@ border: 1px solid rgba(0,0,0,0.21);
 }
 
 .googleLogin:hover,.githubLogin:hover{
-    background-color: #181c25;
+    background-color: var(--color-main);
 }
 
 .content{
@@ -108,7 +108,7 @@ border: 1px solid rgba(0,0,0,0.21);
     line-height: 2.13;
     letter-spacing: normal;
     text-align: center;
-    color: #707070;
+    color: var(--color-sub);
   
 }
 

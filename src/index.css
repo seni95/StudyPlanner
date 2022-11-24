@@ -6,6 +6,8 @@
   --color-accent: #f16e03;
   --color-white:white;
   --color-scrollbar:#aaa7a7;
+  --color-main:#181c25;
+  --color-sub:#707070;
 }
 
 html.dark{

@@ -41,7 +41,7 @@ export default function DayPlanner({plannerRepository}) {
                 const b = a.filter(i=>i!==null);
                 setTodayRepeat(b);
                 console.log(b);
-                const c = b.filter(x=>!todayTodo.includes(x));
+                const c = b.filter(x=>todayTodo.includes(x));
                 const updated=[...todayTodo, ...c];
                 setTodos(updated);
                 console.log(updated);
@@ -141,9 +141,15 @@ export default function DayPlanner({plannerRepository}) {
             <ToDo status={item.status} todo={item} key={item.id} checkTime={checkTime} handleDelete={handleDelete} checkStatus={checkStatus}></ToDo>
         ))}
        </div>
+       <div className={styles.bottom}>
+       <div className={styles.addForm}>
+       <AddToDo updateTodos={updateTodos}></AddToDo>        
+       </div>
+        <div className={styles.timer}>
         {timer===null? null:
         <StopWatch todo={timer} updateTime={updateTime} time={timerSetting}></StopWatch>}
-        <AddToDo updateTodos={updateTodos}></AddToDo>        
+        </div>
+       </div>
     </div>
   )
 }

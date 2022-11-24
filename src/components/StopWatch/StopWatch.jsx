@@ -1,5 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import useCounter from '../../hooks/useCounter';
+import {TfiAlarmClock} from 'react-icons/tfi';
+import styles from './StopWatch.module.css';
 
 export default function StopWatch({todo,updateTime,time}) {
     const [hour,setHour] = useState(time[0]);
@@ -41,10 +43,15 @@ export default function StopWatch({todo,updateTime,time}) {
     
     useEffect(operate,[count]);
 return (
-    <div>
+    <div className={styles.container}>
+        <div className={styles.pic}>
+        <TfiAlarmClock></TfiAlarmClock>
+        </div>
+        <div className={styles.content}>
         <span>{hour<10?"0"+hour:hour}</span>:
         <span>{minutes<10?"0"+minutes:minutes}</span>:
         <span>{seconds<10?"0"+seconds:seconds}</span>
+        </div>
         {isStart?
         <button onClick={()=>{stop(); setIsstart(false);}}>stop</button>
         :

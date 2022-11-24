@@ -13,7 +13,6 @@
 
 .text{
     flex: 1 1 0%;
-    margin-left:0.8rem;
     font-size:1rem;
 }
 
@@ -30,8 +29,9 @@
 }
 
 .icon:hover{
-    background-color: var(--color-accent);
+    background-color: var(--color-main);
     transform: scale(1.2) rotate(15deg);
+    color:var(--color-white);
 
 }
 .button{
