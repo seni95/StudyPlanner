@@ -32,10 +32,7 @@ export default function Login({authService}) {
             <li><button className={styles.githubLogin}name="Github" onClick={onLogin}>Github로 로그인</button></li>
         </ul>
         <span className={styles.content}>
-        CONTENT <br />
-1. 플래너 / 타이머  <br />
-2. 캘린더   <br />
-3. 분석 페이 <br />
+       시간 기록/ 일과 작성 플래너
         </span>
         </div>
         </div>

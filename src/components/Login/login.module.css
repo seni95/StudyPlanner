@@ -61,40 +61,54 @@
 .googleLogin{
     width: 202px;
   height: 42px;
-  margin: 4px 0px 29px 0;
+  margin: 10px 0px 29px 0;
   padding: 7px 38px;
   border: solid 1px #707070;
   background-color: #707070;
   color:white;
-}
+  border: 1px solid rgba(0,0,0,0.21);
+  border-bottom-color: rgba(0,0,0,0.34);
+  text-shadow:0 1px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.34) inset, 
+              0 2px 0 -1px rgba(0,0,0,0.13), 
+              0 3px 0 -1px rgba(0,0,0,0.08), 
+              0 3px 13px -1px rgba(0,0,0,0.21);
+         
+            }
 
 .githubLogin{
     width: 202px;
   height: 42px;
-  margin: 20px 0px 6px 0;
+  margin: 0px 0px 6px 0;
   padding: 7px 26px;
   border: solid 1px #707070;
   background-color: #707070;
 color:white;
+border: 1px solid rgba(0,0,0,0.21);
+  border-bottom-color: rgba(0,0,0,0.34);
+  text-shadow:0 1px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.34) inset, 
+              0 2px 0 -1px rgba(0,0,0,0.13), 
+              0 3px 0 -1px rgba(0,0,0,0.08), 
+              0 3px 13px -1px rgba(0,0,0,0.21);
 }
 
 .googleLogin:hover,.githubLogin:hover{
     background-color: #181c25;
-
 }
 
 .content{
     width: 128px;
     height: 123px;
     margin: 0 0 0 40px;
-    font-family: SegoeUI;
     font-size: 16px;
-    font-weight: normal;
+    font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: 2.13;
     letter-spacing: normal;
     text-align: center;
     color: #707070;
+  
 }
 
