@@ -6,7 +6,7 @@ import AddToDo from '../AddToDo/AddToDo';
 import styles from './DayPlanner.module.css';
 import { resolvePath } from 'react-router-dom';
 
-export default function DayPlanner({plannerRepository}) {
+export default function DayPlanner({plannerRepository,userInfo}) {
     const [timer, setTimer] = useState(null);
     const [todos,setTodos] = useState([]);
     const [repeatTodos, setRepeatTodos] = useState([]);
@@ -28,52 +28,16 @@ export default function DayPlanner({plannerRepository}) {
     //     console.log('todos 변경');
     // },[todos]);
 
-    const loadingData =async ()=>{
-        //오늘 날짜로 등록된 todo를 받아옴
-            var todayTodo=[];
-            const loadingTodos = await plannerRepository.updateData(today, todos=>{
-                setTodos(todos);
-                todayTodo=[...todos];
-            })
-            const loadingRepeat = await plannerRepository.updateData("repeatTodos",todos=>{
-                setRepeatTodos(todos)
-                const a = todos.map(i=>i.repeat==="everyday"?i:null);
-                const b = a.filter(i=>i!==null);
-                setTodayRepeat(b);
-                console.log(b);
-                const c = b.filter(x=>todayTodo.includes(x));
-                const updated=[...todayTodo, ...c];
-                setTodos(updated);
-                console.log(updated);
-            })
-            
-            return ()=>{
-                loadingTodos();
-                loadingRepeat();
-                
-            }
-
-    }
-
-
-
-
-    const [isloading,setIsLoading] = useState(true);
-    const forceUpdate = useCallback(()=>setIsLoading(false),[]);
-
 
     useEffect(()=>{
-        setTimeout(()=>forceUpdate() , 1000);
-      },[])
+     const stopSync = plannerRepository.updateData(today,todos=>{
+        setTodos(todos);
+     })
+     
+     return ()=>{stopSync()};
+     
+    },[userInfo])
 
-  
-
-    useEffect(()=>
-    {loadingData();}
-    ,[])
-
-    useEffect(()=>{
-    },[])
 
     
 

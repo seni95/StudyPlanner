@@ -36,8 +36,6 @@ function App() {
       toHide = newView[0];
       newView.shift();
     }
-    console.log("없어져야할것");
-    console.log(toHide);
 
     if(toHide==="planner"){
       setShowPlanner(false);
@@ -114,7 +112,7 @@ function App() {
     </li>
     <div className={styles.contents}>
     {showPlanner&&
-    <DayPlanner plannerRepository={plannerRepository}></DayPlanner>}
+    <DayPlanner userInfo={userInfo} plannerRepository={plannerRepository}></DayPlanner>}
     {showCal &&
     <Calendar showDetail={showDetail} plannerRepository={plannerRepository}></Calendar>
     }
