@@ -22,7 +22,7 @@ class PlannerRepository{
                 updateData(today);
             }
             else{
-                const filter = repeat.filter(x=>!today.includes(x));
+                const filter = repeat.filter(x=>today.includes(x));
                 const result = [...today, ...filter];
                 updateData(result);}
             })
