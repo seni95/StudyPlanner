@@ -66,7 +66,7 @@ const ShowAnal = ({item})=>{
       if(i[k].status!=="active")
       {count++;}
     }
-    return <div>{count}개</div>
+    return <span>{count}개</span>
   }
 
   const returnRate = (i)=>{
@@ -78,16 +78,19 @@ const ShowAnal = ({item})=>{
       {completed++;}else{active++}
       total++;
     }
-    return <div>{(completed/total)*100}%</div>
+    return <span>{(completed/total)*100}%</span>
   }
 
 
   return <div>
-    총 집중시간: {returnWorkTime(item)}
-    완료한 업무 : {returnComplete(item)}
-    진행도 : {returnRate(item)}
-    {console.log(item)}
+    <div>총 집중시간: {returnWorkTime(item)}</div>
+    <div>완료한 업무 : {returnComplete(item)}</div>
+    <div>진행도 : {returnRate(item)}</div>
+     
+    <div className={styles.items}>
+      업무 리스트
     {item.map(i=>returnWorks(i))}
+    </div>
   </div>;
 
 }
