@@ -49,13 +49,45 @@ const ShowAnal = ({item})=>{
   }
 
 
+  const returnWorks = (i)=>{
 
+    return (
+      <li>
+        <div>{i.name}</div>
+        <span>작업시간: {i.time}</span>
+        <span>{i.status!=="active"?"완료":"미완료"}</span>
+      </li>
+    )
+  }
+
+  const returnComplete = (i)=>{
+    let count = 0;
+    for(let k=0; k<i.length; k++){
+      if(i[k].status!=="active")
+      {count++;}
+    }
+    return <div>{count}개</div>
+  }
+
+  const returnRate = (i)=>{
+    let active = 0;
+    let completed = 0;
+    let total=0;
+    for(let k=0; k<i.length; k++){
+      if(i[k].status!=="active")
+      {completed++;}else{active++}
+      total++;
+    }
+    return <div>{(completed/total)*100}%</div>
+  }
 
 
   return <div>
     총 집중시간: {returnWorkTime(item)}
-    완료한 업무 : 1개
-    진행도 : 50%;
+    완료한 업무 : {returnComplete(item)}
+    진행도 : {returnRate(item)}
+    {console.log(item)}
+    {item.map(i=>returnWorks(i))}
   </div>;
 
 }
