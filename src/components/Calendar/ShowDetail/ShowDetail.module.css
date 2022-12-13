@@ -3,5 +3,14 @@
 }
 
 .items{
-    padding-top:2rem;
+    margin-top:2rem;
+    border:1px solid black;
+    width:90%;
+    background-color: white;
+}
+
+
+.status{
+    font-size:1rem;
+    color:red;
 }

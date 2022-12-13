@@ -54,8 +54,8 @@ const ShowAnal = ({item})=>{
     return (
       <li>
         <div>{i.name}</div>
-        <span>작업시간: {i.time}</span>
-        <span>{i.status!=="active"?"완료":"미완료"}</span>
+        <span>총 작업시간: {i.time}</span>
+        <span className={styles.status}>{i.status!=="active"?"완료":"미완료"}</span>
       </li>
     )
   }
