@@ -33,7 +33,14 @@ class PlannerRepository{
         return ()=>ref.off();
     }
 
-
+    repeatData(updateData){
+        const repeat = firebaseDatabase.ref(`${this.userInfo}/repeatTodos/todolist`);
+        repeat.on('value',snapshot=>{
+            const repeat=snapshot.val();
+            repeat&&updateData(repeat);
+        })
+        return ()=>repeat.off();
+    }
     
     saveData(date,todos){
         firebaseDatabase.ref(`${this.userInfo}/${date}/todolist`).set(todos);

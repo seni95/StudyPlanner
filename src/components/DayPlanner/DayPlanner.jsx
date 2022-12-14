@@ -10,7 +10,6 @@ export default function DayPlanner({plannerRepository,userInfo}) {
     const [timer, setTimer] = useState(null);
     const [todos,setTodos] = useState([]);
     const [repeatTodos, setRepeatTodos] = useState([]);
-    const [todayRepeat, setTodayRepeat] = useState([]);
 
     const [selectedTime, setSelectedTime] = useState();
     const [timerSetting,setTimerSetting] = useState(null);
@@ -40,6 +39,15 @@ export default function DayPlanner({plannerRepository,userInfo}) {
 
 
     
+    useEffect(()=>{
+        const stopSync = plannerRepository.updateData(today,todos=>{
+           setRepeatTodos(todos);
+        })
+        
+        return ()=>{stopSync()};
+        
+       },[userInfo])
+
 
     const checkTime = (id,time)=>{
         if(timer===null){
@@ -81,11 +89,15 @@ export default function DayPlanner({plannerRepository,userInfo}) {
         plannerRepository.createRepeatToDo(isRepeated)}
     }
 
-    const handleDelete = (id)=>{
+    const handleDelete = (id,repeat)=>{
         const updated = todos.filter(item=>item.id!==id);
         setTodos(updated);
         plannerRepository.saveData(today,updated);
-        
+        if(repeat==="everyday"){
+        const removeRepeat = repeatTodos.filter(item=>item.id!==id)
+        setRepeatTodos(removeRepeat);
+        plannerRepository.saveData("repeatTodos",updated);
+        }
     }
 
     const checkStatus = (id,status)=>{
