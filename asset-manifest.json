@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/StudyPlanner/static/css/main.c41acd81.css",
-    "main.js": "/StudyPlanner/static/js/main.c91ff735.js",
+    "main.css": "/StudyPlanner/static/css/main.cd76548c.css",
+    "main.js": "/StudyPlanner/static/js/main.e9e4c361.js",
     "static/js/787.c71a5068.chunk.js": "/StudyPlanner/static/js/787.c71a5068.chunk.js",
     "static/media/logo.svg": "/StudyPlanner/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/StudyPlanner/index.html",
-    "main.c41acd81.css.map": "/StudyPlanner/static/css/main.c41acd81.css.map",
-    "main.c91ff735.js.map": "/StudyPlanner/static/js/main.c91ff735.js.map",
+    "main.cd76548c.css.map": "/StudyPlanner/static/css/main.cd76548c.css.map",
+    "main.e9e4c361.js.map": "/StudyPlanner/static/js/main.e9e4c361.js.map",
     "787.c71a5068.chunk.js.map": "/StudyPlanner/static/js/787.c71a5068.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c41acd81.css",
-    "static/js/main.c91ff735.js"
+    "static/css/main.cd76548c.css",
+    "static/js/main.e9e4c361.js"
   ]
 }
