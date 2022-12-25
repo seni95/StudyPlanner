@@ -51,5 +51,11 @@ li{
         min-width:100%;
     }
       
+    .contents{
+        flex-direction: column;
+    }
+    .innerContents{
+
+    }
    }
    

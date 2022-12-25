@@ -111,8 +111,9 @@ function App() {
       <button className={styles.navButton} onClick={onLogOut}>로그아웃</button>
     </li>
     <div className={styles.contents}>
-    {showPlanner&&
+      {showPlanner&&
     <DayPlanner userInfo={userInfo} plannerRepository={plannerRepository}></DayPlanner>}
+
     {showCal &&
     <Calendar showDetail={showDetail} plannerRepository={plannerRepository}></Calendar>
     }
