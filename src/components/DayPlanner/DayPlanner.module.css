@@ -1,5 +1,5 @@
 .container{
-    width: 500px;
+    width: 100%;
     margin: 0 0 1px;
     padding: 7px 0 0;
     background-color: #f1f1f5;
@@ -17,15 +17,23 @@
 
 
 .timer{
-    flex-grow: 1;
 
 }
 
 .addFrom{
-    flex-grow: 1;
    
 }
 
 .bottom{
-    display: flex;
 }
+
+@media(max-width:750px){
+    .container{
+        width: 100%;
+    }
+      
+    .bottom{
+        flex-direction: column;
+    }
+   }
+   

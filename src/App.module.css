@@ -44,3 +44,12 @@ li{
     color:var(--color-white);
 
 }
+
+
+@media(max-width:750px){
+    .container{
+        min-width:100%;
+    }
+      
+   }
+   
