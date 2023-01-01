@@ -17,14 +17,14 @@
 
 
 .timer{
-
+    width: 100%;
+    display: flex;
 }
 
-.addFrom{
-   
-}
 
 .bottom{
+    display: flex;
+    flex-direction: row;
 }
 
 @media(max-width:750px){

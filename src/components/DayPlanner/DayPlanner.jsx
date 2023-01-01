@@ -118,9 +118,7 @@ export default function DayPlanner({plannerRepository,userInfo}) {
         ))}
        </div>
        <div className={styles.bottom}>
-       <div className={styles.addForm}>
        <AddToDo updateTodos={updateTodos}></AddToDo>        
-       </div>
         <div className={styles.timer}>
         {timer===null? null:
         <StopWatch todo={timer} updateTime={updateTime} time={timerSetting}></StopWatch>}
