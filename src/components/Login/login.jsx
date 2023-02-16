@@ -7,6 +7,7 @@ export default function Login({authService}) {
 
   
     const saveLoginData =(content)=>{
+        window.localStorage.setItem('userInfo',JSON.stringify({id:content.uid,photo:content.photoURL,name:content.displayName,email:content.email }));
         navigate("/studyPlanner",{state:{id:content.uid,photo:content.photoURL,name:content.displayName,email:content.email }});
     }
 

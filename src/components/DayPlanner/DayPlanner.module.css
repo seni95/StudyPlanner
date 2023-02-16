@@ -10,16 +10,24 @@
     border-bottom-right-radius: 1.5rem;
     }
 
+    .main{
+        flex-grow: 1;
+        display: flex;
+    }
 
 .todos{
     flex : 1 1 auto;
     background-color: transparent;
     overflow-y: auto;
+    border-radius: 2rem;
+    background-color: rgb(146 151 179 / 13%);
+    padding:0.5rem 1rem;
+    margin: 2rem;
+    flex-grow:1;
 }
 
 
 .timer{
-    width: 100%;
     display: flex;
 }
 
@@ -27,6 +35,10 @@
 .bottom{
     display: flex;
     flex-direction: row;
+    background-color: rgb(146 151 179 / 13%);
+    padding:0.5rem 1rem;
+    margin: 2rem;
+
 }
 
 @media(max-width:750px){
@@ -39,3 +51,11 @@
     }
    }
    
+
+.label{
+    margin:0;
+    padding:0;
+    margin-top:1rem;
+    margin-left: 1rem;
+}
+

@@ -112,17 +112,21 @@ export default function DayPlanner({plannerRepository,userInfo}) {
 
   return (
     <div className={styles.container}>
+        <h3 className={styles.label}>일정 목록</h3>
+        <div className={styles.main}>
        <div className={styles.todos}>
        {todos.map(item=>(
             <ToDo status={item.status} todo={item} key={item.id} checkTime={checkTime} handleDelete={handleDelete} checkStatus={checkStatus}></ToDo>
         ))}
        </div>
-       <div className={styles.bottom}>
-       <AddToDo updateTodos={updateTodos}></AddToDo>        
-        <div className={styles.timer}>
+       <div className={styles.timer}>
         {timer===null? null:
         <StopWatch todo={timer} updateTime={updateTime} time={timerSetting}></StopWatch>}
         </div>
+        </div>
+        <h3 className={styles.label}>일정 추가</h3>
+       <div className={styles.bottom}>
+       <AddToDo updateTodos={updateTodos}></AddToDo>        
        </div>
     </div>
   )

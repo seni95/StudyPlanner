@@ -7,11 +7,10 @@ import { useEffect, useState } from 'react';
 import styles from './App.module.css';
 import { Navigate, useLocation, useNavigate, useNavigation } from 'react-router-dom';
 import PlannerRepository from './service/planner_repository';
-
+import {MdLogout} from 'react-icons/md'
 
 
 function App() {
-  const [calDetail, setCalDetail] = useState(false);
   const [detailContent, setDetailContent] = useState({});
   const [showCal, setShowCal] = useState(false);
   const [showPlanner, setShowPlanner] = useState(true);
@@ -19,39 +18,25 @@ function App() {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const [userInfo, setUserInfo] = useState(location.state === null ? null : location.state.id);
-  const [userDetail, setUserDetail] = useState(location.state === null ? null : { photo: location.state.photo, name: location.state.name, email: location.state.email })
+  const [userData,setUserData] = useState(location.state===null?JSON.parse(window.localStorage.getItem('userInfo')):location.state);
+  const [userInfo, setUserInfo] = useState(userData === null ? null : userData.id);
+  const [userDetail, setUserDetail] = useState(userData === null ? null : { photo: userData.photo, name: userData.name, email: userData.email })
   const plannerRepository = new PlannerRepository(userInfo);
 
 
-
-  const controllingContent = (newOne) => {
-    if (calDetail === true && newOne === "calendar detail")
-      return;
-
-    var newView = [...controlContent, newOne];
-    var toHide = undefined;
-    if (newView.length > 2) {
-      toHide = newView[0];
-      newView.shift();
-    }
-
-    if (toHide === "planner") {
+  const toggleMenu=(name)=>{
+    if(name==="cal"){
+      setShowCal(true);
       setShowPlanner(false);
-    } else if (toHide === "calendar detail") {
-      setCalDetail(false);
-    } else if (toHide === "calendar") {
+    } else{
       setShowCal(false);
+      setShowPlanner(true);
     }
-
-    setControlContent(newView);
-
   }
 
 
   const showDetail = (a, b, c) => {
 
-    setCalDetail(true)
 
     setDetailContent({ date: `${a}년${b}월${c}일` });
 
@@ -60,36 +45,18 @@ function App() {
       console.log(item);
     })
 
-    controllingContent("calendar detail");
     return () => { stopSync() };
 
 
   }
 
 
-  const controlCalendar = () => {
-    if (showCal === false) {
-      controllingContent("calendar");
-      setShowCal(true);
-    }
-    else if (showCal === true) {
-      setCalDetail(false);
-      setShowCal(false);
-    }
 
-  }
-
-  const controlDayPlanner = () => {
-    if (showPlanner === false) {
-      setShowPlanner(true);
-      controllingContent("planner");
-    }
-
-  }
 
 
   const onLogOut = () => {
-    setUserInfo(null);
+    window.localStorage.removeItem('userInfo');
+    setUserData(null);
     navigate("/");
   }
 
@@ -109,27 +76,30 @@ function App() {
           <div>
             <div>{userDetail ? userDetail.name : null}</div>
             <div>{userDetail ? userDetail.email : null}</div>
-            <button onClick={onLogOut}>로그아웃</button>
           </div>
         </div>
         <div className={styles.contents}>
       
       <div className={styles.mainView}>
-      <li className={styles.nav}>
-        <button className={showPlanner === true ? `${styles.viewContents} ${styles.navButton}` : styles.navButton} onClick={controlDayPlanner}>플래너</button>
-        <button className={showCal === true ? `${styles.viewContents} ${styles.navButton}` : styles.navButton} onClick={controlCalendar}>캘린더</button>
-      </li>
+      <div className={styles.nav}>
+        <div>
+        <button className={showPlanner === true ? `${styles.viewContents} ${styles.navButton}` : styles.navButton} onClick={()=>toggleMenu("planner")}>플래너</button>
+        <button className={showCal === true ? `${styles.viewContents} ${styles.navButton}` : styles.navButton} onClick={()=>toggleMenu("cal")}>캘린더</button>
+        </div>
+      <button className={styles.buttonUI} onClick={onLogOut}>로그아웃 <MdLogout className={styles.offButton}></MdLogout></button>
 
+      </div>
+        <div className={styles.screen}>
           {showPlanner &&
             <DayPlanner userInfo={userInfo} plannerRepository={plannerRepository}></DayPlanner>}
 
           {showCal &&
-            <Calendar showDetail={showDetail} plannerRepository={plannerRepository}></Calendar>
-          }
-          {calDetail &&
+          <><Calendar showDetail={showDetail} plannerRepository={plannerRepository}></Calendar>
             <ShowDetail item={detailContent.item} date={detailContent.date}></ShowDetail>
-          }
+            </>
 
+          }
+        </div>
         </div>
       </div>
     </div>

@@ -58,7 +58,6 @@ export default function AddToDo({updateTodos}) {
         }
 
         return (<>
-        
         <select 
         ref={goalHourRef}
         className={styles.input}
@@ -84,19 +83,14 @@ export default function AddToDo({updateTodos}) {
     className={styles.form}
     >
         <div className={styles.inputs} id="input">
-        <div>
         <label htmlFor="name">할 일</label>
         <input 
         ref={nameRef}
         type="text" id="name" name="name"
         className={styles.input}
         />
-        </div>
-        <div>
-        <label htmlFor="goalTime">목표시간</label><br></br>
+        <label htmlFor="goalTime">목표시간</label>
         {createTimeSelector()}
-        </div>
-        <div>
         <label htmlFor="repeat">반복</label>
         <select className={styles.input}
         ref={repeatRef}
@@ -104,9 +98,8 @@ export default function AddToDo({updateTodos}) {
             <option value="everyday">반복</option>
             <option value="none">반복안함</option>
         </select>
-        </div>
-        </div>
         <button className={styles.button}><IoMdCreate></IoMdCreate></button>
+        </div>
     </form>
   )
 }

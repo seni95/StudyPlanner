@@ -1,27 +1,26 @@
 .form{
-    /* width:100%; */
-    background-color: var(--color-bg-dark);
-    height: 100%;
-    display: flex;
+    margin:2rem;
+    width:100%;
 }
 
 .input{
-    flex: 1 0 auto;
     padding:1em;
     border:none;
     outline:none;
     border-radius:8px;
+    display: inline;
 }
 
 .button{
     background-color: var(--color-main);
     color:var(--color-white);
     font-weight: bold;
-    padding:2rem;
-    font-size:1.4rem;
     cursor:pointer;
 }
 
 .button:hover{
     filter:brightness(205%);
+}
+
+.timeInput{
 }
