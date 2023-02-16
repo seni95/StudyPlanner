@@ -18,20 +18,16 @@ html.dark{
 }
 
 #root{
-  background-color:var(--color-bg-dark);
-  display: flex;
-  flex-direction: column;
-  -webkit-box-shadow: 27px 4px 50px -30px #000000; 
-  box-shadow: 27px 4px 50px -30px #000000;
-    height: 624px;
-    overflow: hidden;
+  background-color:rgba(0,0,0,0.3);
+  width:80%;
+  height:80%;
+  border-radius: 1.5rem;
 }
 
 
 
 @media(max-width:750px){
   #root{
-    height: auto;
   }
  }
  
