@@ -2,8 +2,11 @@
     display: flex;
     align-items: center;
     padding:0.5rem 1rem;
-    margin: 0.1rem 0;
-    color:var(--color-text);
+    margin: 1rem;
+    color:white;
+    background-color: rgb(146 151 179 / 13%);
+    border-radius: 1rem;
+    height:90%;
 }
 
 .checkbox{
@@ -13,7 +16,7 @@
 
 .text{
     flex: 1 1 0%;
-    font-size:1rem;
+    font-size:1.5rem;
 }
 
 .text *{

@@ -7,16 +7,16 @@ export default function Login({authService}) {
 
   
     const saveLoginData =(content)=>{
-        navigate("/studyPlanner",{state:{id:content}});
+        navigate("/studyPlanner",{state:{id:content.uid,photo:content.photoURL,name:content.displayName,email:content.email }});
     }
 
 
     const onLogin = (e)=>{
     authService.login(e.currentTarget.name)
-    .then(data=>saveLoginData(data.user.uid));
-
+    .then(data=>saveLoginData(data.user))
     }
     
+
     
     
 

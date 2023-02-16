@@ -1,17 +1,19 @@
 .container{
     width: 100%;
+    height:100%;
     margin: 0 0 1px;
     padding: 7px 0 0;
-    background-color: #f1f1f5;
+    background-color: rgba(16 18 27 / 40%);
     display: flex;
     flex-direction: column;
     align-items: stretch;
-}
+    border-bottom-right-radius: 1.5rem;
+    }
 
 
 .todos{
     flex : 1 1 auto;
-    background-color: #fff;
+    background-color: transparent;
     overflow-y: auto;
 }
 

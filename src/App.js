@@ -19,29 +19,28 @@ function App() {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const [userInfo, setUserInfo] = useState(location.state===null?null:location.state.id);
-
-
+  const [userInfo, setUserInfo] = useState(location.state === null ? null : location.state.id);
+  const [userDetail, setUserDetail] = useState(location.state === null ? null : { photo: location.state.photo, name: location.state.name, email: location.state.email })
   const plannerRepository = new PlannerRepository(userInfo);
 
 
 
-  const controllingContent = (newOne)=>{
-    if(calDetail===true && newOne==="calendar detail")
-    return;
+  const controllingContent = (newOne) => {
+    if (calDetail === true && newOne === "calendar detail")
+      return;
 
-    var newView = [...controlContent,newOne];
+    var newView = [...controlContent, newOne];
     var toHide = undefined;
-    if(newView.length>2){
+    if (newView.length > 2) {
       toHide = newView[0];
       newView.shift();
     }
 
-    if(toHide==="planner"){
+    if (toHide === "planner") {
       setShowPlanner(false);
-    }else if(toHide==="calendar detail"){
+    } else if (toHide === "calendar detail") {
       setCalDetail(false);
-    }else if(toHide==="calendar"){
+    } else if (toHide === "calendar") {
       setShowCal(false);
     }
 
@@ -50,79 +49,90 @@ function App() {
   }
 
 
-  const showDetail = (a,b,c)=>{
-    
-    setCalDetail(true) 
-    
-    setDetailContent({date:`${a}년${b}월${c}일`});
+  const showDetail = (a, b, c) => {
 
-    const stopSync = plannerRepository.updateData(`${a}년${b}월${c}일`,(item)=>{
-      setDetailContent({...detailContent, item});
+    setCalDetail(true)
+
+    setDetailContent({ date: `${a}년${b}월${c}일` });
+
+    const stopSync = plannerRepository.updateData(`${a}년${b}월${c}일`, (item) => {
+      setDetailContent({ ...detailContent, item });
       console.log(item);
     })
 
     controllingContent("calendar detail");
-    return ()=>{stopSync()};
+    return () => { stopSync() };
 
 
   }
 
 
-  const controlCalendar = ()=>{
-    if(showCal===false)
-    {
-    controllingContent("calendar");
-    setShowCal(true);
+  const controlCalendar = () => {
+    if (showCal === false) {
+      controllingContent("calendar");
+      setShowCal(true);
     }
-    else if(showCal===true)
-    {setCalDetail(false);
-      setShowCal(false);}  
+    else if (showCal === true) {
+      setCalDetail(false);
+      setShowCal(false);
+    }
 
   }
 
-  const controlDayPlanner =()=>{
-    if(showPlanner===false)
-    {setShowPlanner(true);
-      controllingContent("planner");}
+  const controlDayPlanner = () => {
+    if (showPlanner === false) {
+      setShowPlanner(true);
+      controllingContent("planner");
+    }
 
   }
 
 
-  const onLogOut = ()=>{
+  const onLogOut = () => {
     setUserInfo(null);
     navigate("/");
   }
 
 
-  useEffect(()=>
-  {
-    if(userInfo===null)
-    navigate("/");
+  useEffect(() => {
+    if (userInfo === null)
+      navigate("/");
     console.log(userInfo);
-  },[userInfo]);
+  }, [userInfo]);
 
- 
+
 
   return (
-  <div className={styles.container}>
-    <li className={styles.nav}>
-      <button className={showPlanner===true?`${styles.viewContents} ${styles.navButton}`: styles.navButton} onClick={controlDayPlanner}>플래너</button>
-      <button className={showCal===true?`${styles.viewContents} ${styles.navButton}`: styles.navButton} onClick={controlCalendar}>캘린더</button>
-      <button className={styles.navButton} onClick={onLogOut}>로그아웃</button>
-    </li>
-    <div className={styles.contents}>
-      {showPlanner&&
-    <DayPlanner userInfo={userInfo} plannerRepository={plannerRepository}></DayPlanner>}
+    <div className={styles.container}>
+<div className={styles.userInfo}>
+          <img className={styles.userImg} src={userDetail ? userDetail.photo : null}></img>
+          <div>
+            <div>{userDetail ? userDetail.name : null}</div>
+            <div>{userDetail ? userDetail.email : null}</div>
+            <button onClick={onLogOut}>로그아웃</button>
+          </div>
+        </div>
+        <div className={styles.contents}>
+      
+      <div className={styles.mainView}>
+      <li className={styles.nav}>
+        <button className={showPlanner === true ? `${styles.viewContents} ${styles.navButton}` : styles.navButton} onClick={controlDayPlanner}>플래너</button>
+        <button className={showCal === true ? `${styles.viewContents} ${styles.navButton}` : styles.navButton} onClick={controlCalendar}>캘린더</button>
+      </li>
 
-    {showCal &&
-    <Calendar showDetail={showDetail} plannerRepository={plannerRepository}></Calendar>
-    }
-    {calDetail&&
-    <ShowDetail item={detailContent.item} date={detailContent.date}></ShowDetail>
-    }
+          {showPlanner &&
+            <DayPlanner userInfo={userInfo} plannerRepository={plannerRepository}></DayPlanner>}
 
+          {showCal &&
+            <Calendar showDetail={showDetail} plannerRepository={plannerRepository}></Calendar>
+          }
+          {calDetail &&
+            <ShowDetail item={detailContent.item} date={detailContent.date}></ShowDetail>
+          }
+
+        </div>
+      </div>
     </div>
-  </div>
   );
 }
 
