@@ -8,6 +8,15 @@
     padding-right:2rem;
 }
 
+.content{
+    font-size:3rem;
+}
+
 .pic{
     font-size:5rem;
+}
+
+.button{
+    color:white;
+    border:1px solid white;
 }
