@@ -8,12 +8,14 @@ button {
   }
   
   .container {
-    width:400px;
-    height: 88%;
-    margin: auto;
+    height: 500px;
+    margin-left: 1rem;
     border: 1px solid rgba(128, 128, 128, 0.267);
     position: relative;
     font-size:1rem;
+    background-color: rgb(146 151 179 / 13%);
+    padding:2rem;
+    border-radius: 1.3rem;
   }
   
   .container .title {
@@ -89,7 +91,7 @@ button {
     display: none;
   }
 
-
+  
 
   .miniViewerContainer{
     list-style: none;

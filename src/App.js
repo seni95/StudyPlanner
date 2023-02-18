@@ -94,9 +94,10 @@ function App() {
             <DayPlanner userInfo={userInfo} plannerRepository={plannerRepository}></DayPlanner>}
 
           {showCal &&
-          <><Calendar showDetail={showDetail} plannerRepository={plannerRepository}></Calendar>
-            <ShowDetail item={detailContent.item} date={detailContent.date}></ShowDetail>
-            </>
+          <div className={styles.calendar}>
+          <Calendar showDetail={showDetail} plannerRepository={plannerRepository}></Calendar>
+          <ShowDetail item={detailContent.item} date={detailContent.date}></ShowDetail>
+            </div>
 
           }
         </div>

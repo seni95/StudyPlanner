@@ -1,12 +1,14 @@
 .container{
     width:500px;
+    margin-left:4rem;
 }
 
 .items{
     margin-top:2rem;
     border:1px solid black;
     width:90%;
-    background-color: white;
+    background-color: rgb(146 151 179 / 13%);
+    
 }
 
 
