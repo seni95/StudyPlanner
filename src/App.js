@@ -72,6 +72,7 @@ function App() {
   return (
     <div className={styles.container}>
 <div className={styles.userInfo}>
+  <h2>사용자 정보</h2>
           <img className={styles.userImg} src={userDetail ? userDetail.photo : null}></img>
           <div>
             <div>{userDetail ? userDetail.name : null}</div>

@@ -1,114 +1,32 @@
 
 
 .container{
-    width: 500px;
-    height: 624px;
-    margin: 0 0 3px;
-    padding: 27px 28px;
-    border: solid 1px var(--color-sub);
-    background-color: var(--color-main);
+  width:100%;
+  height:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .designLine{
-    width: 444px;
-  height: 570px;
-  padding: 117px 0px 0px 24px;
-  border: solid 1px var(--color-sub);
+width:500px;
+background-color: rgba(16 18 27 / 40%);
+border-radius: 1.5rem;
+padding:1rem;
+text-align: center;
 }
 
 
-.title{
-    width: 155px;
-  height: 70px;
-  font-family: SegoeUI;
-  font-size: 20px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.5;
-  letter-spacing: normal;
-  text-align: left;
-  color: var(--color-sub);
-}
-
-.loginForm{
-    /* background-color: var(--color-bg);
-    width:300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 2px solid var(--color-text); */
-    width: 500px;
-    height: 300px;
-    background-color: #fff;
-    padding: 43px 87px 84px 43px;
-    position: relative;
-    right: 55px;
-    top:130px;
-    display: flex;
-}
-
-.loginTitle{
-
-}
-
-
-.loginSelector{
-
-    
-}
-
-.googleLogin{
-    width: 202px;
-  height: 42px;
-  margin: 10px 0px 29px 0;
-  padding: 7px 38px;
-  border: solid 1px var(--color-sub);
-  background-color: var(--color-sub);
+.loginButton{
+  background-color: rgb(146 151 179 / 13%);
+  padding:1rem;
   color:white;
-  border: 1px solid rgba(0,0,0,0.21);
-  border-bottom-color: rgba(0,0,0,0.34);
-  text-shadow:0 1px 0 rgba(0,0,0,0.15);
-  box-shadow: 0 1px 0 rgba(255,255,255,0.34) inset, 
-              0 2px 0 -1px rgba(0,0,0,0.13), 
-              0 3px 0 -1px rgba(0,0,0,0.08), 
-              0 3px 13px -1px rgba(0,0,0,0.21);
-         
-            }
-
-.githubLogin{
-    width: 202px;
-  height: 42px;
-  margin: 0px 0px 6px 0;
-  padding: 7px 26px;
-  border: solid 1px var(--color-sub);
-  background-color: var(--color-sub);
-color:white;
-border: 1px solid rgba(0,0,0,0.21);
-  border-bottom-color: rgba(0,0,0,0.34);
-  text-shadow:0 1px 0 rgba(0,0,0,0.15);
-  box-shadow: 0 1px 0 rgba(255,255,255,0.34) inset, 
-              0 2px 0 -1px rgba(0,0,0,0.13), 
-              0 3px 0 -1px rgba(0,0,0,0.08), 
-              0 3px 13px -1px rgba(0,0,0,0.21);
+  font-size: bold;
+  border-radius: 2rem;
+  width:300px;
+  margin-top:1rem;
 }
 
-.googleLogin:hover,.githubLogin:hover{
-    background-color: var(--color-main);
+.loginButton:hover{
+  filter: brightness(1.7);
 }
-
-.content{
-    width: 128px;
-    height: 123px;
-    margin: 0 0 0 40px;
-    font-size: 16px;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 2.13;
-    letter-spacing: normal;
-    text-align: center;
-    color: var(--color-sub);
-  
-}
-
