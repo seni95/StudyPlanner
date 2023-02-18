@@ -19,7 +19,7 @@
 .text *{
 }
 
-.icon{
+.iconWrapper{
     width:26px;
     height:26px;
     background-color: transparent;
@@ -27,13 +27,18 @@
     transition: all 150ms ease-out;
 }
 
-.icon:hover{
+.iconWrapper:hover{
     background-color: var(--color-main);
     transform: scale(1.2) rotate(15deg);
-    color:var(--color-white);
 
 }
 .button{
 
+}
+
+.icon{
+    font-size: 1.5rem;
+    margin-right:1rem;
+    color:white;
 }
 

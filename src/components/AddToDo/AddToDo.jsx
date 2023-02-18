@@ -64,14 +64,14 @@ export default function AddToDo({updateTodos}) {
         name="goalHour" id="goalHour">
             {hourArr}
         </select>
-        <label htmlFor="goalHour">시간</label>
+        <label htmlFor="goalHour"> 시간 </label>
         <select 
         className={styles.input}
         ref={goalMinRef}
         name="goalMin" id="goalMin">
             {minArr}
         </select>
-        <label htmlFor="goalMin">분</label>
+        <label htmlFor="goalMin"> 분 </label>
         </>)
     }
 
@@ -83,15 +83,15 @@ export default function AddToDo({updateTodos}) {
     className={styles.form}
     >
         <div className={styles.inputs} id="input">
-        <label htmlFor="name">할 일</label>
+        <label htmlFor="name"> 할 일 </label>
         <input 
         ref={nameRef}
         type="text" id="name" name="name"
         className={styles.input}
         />
-        <label htmlFor="goalTime">목표시간</label>
+        <label htmlFor="goalTime"> 목표시간 </label>
         {createTimeSelector()}
-        <label htmlFor="repeat">반복</label>
+        <label htmlFor="repeat"> 반복 </label>
         <select className={styles.input}
         ref={repeatRef}
         name="repeat" id="repeat">

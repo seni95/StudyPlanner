@@ -119,10 +119,10 @@ export default function DayPlanner({plannerRepository,userInfo}) {
             <ToDo status={item.status} todo={item} key={item.id} checkTime={checkTime} handleDelete={handleDelete} checkStatus={checkStatus}></ToDo>
         ))}
        </div>
+       {timer===null? null:
        <div className={styles.timer}>
-        {timer===null? null:
-        <StopWatch todo={timer} updateTime={updateTime} time={timerSetting}></StopWatch>}
-        </div>
+        <StopWatch todo={timer} updateTime={updateTime} time={timerSetting}></StopWatch>
+        </div>}
         </div>
         <h3 className={styles.label}>일정 추가</h3>
        <div className={styles.bottom}>

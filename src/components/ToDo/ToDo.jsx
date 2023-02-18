@@ -3,6 +3,8 @@ import {FcAlarmClock} from 'react-icons/fc';
 import {RiDeleteBin2Line} from 'react-icons/ri';
 import {BsArrowRepeat} from 'react-icons/bs';
 import styles from './ToDo.module.css';
+import {BiStopwatch} from 'react-icons/bi'
+import {AiOutlineClose} from 'react-icons/ai';
 
 export default function ToDo({status,todo,checkTime,handleDelete,checkStatus}) {
 
@@ -29,10 +31,10 @@ export default function ToDo({status,todo,checkTime,handleDelete,checkStatus}) {
         <label htmlFor="" className={styles.text}>
             <span>{todo.name}</span>
             <span>{todo.goalTime}</span>
-            <span>{todo.time}</span>
-           <button className={styles.icon} onClick={()=>{showTimer(todo.id,todo.time)}}><FcAlarmClock></FcAlarmClock></button>
-           <button className={styles.icon} onClick={()=>{deleteThis(todo.id,todo.repeat)}}><RiDeleteBin2Line></RiDeleteBin2Line></button>
-           {showCycle(todo.repeat)}
+            <span>{todo.time} </span> 
+            {showCycle(todo.repeat)}
+           <button className={styles.iconWrapper} onClick={()=>{showTimer(todo.id,todo.time)}}><BiStopwatch className={styles.icon}></BiStopwatch></button>
+           <button className={styles.iconWrapper} onClick={()=>{deleteThis(todo.id,todo.repeat)}}><AiOutlineClose className={styles.icon}></AiOutlineClose></button>
         </label>
         <input type="checkbox" onChange={()=>status==="active"?updateStatus(todo.id,"completed"):updateStatus(todo.id,"active")} className={styles.checkbox} checked={status==="active"?false:true}/>
     </li>
