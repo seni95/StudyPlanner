@@ -10,7 +10,6 @@ export default function useCounter(initialValue,ms) {
         intervalRef.current = setInterval(()=>{
             setCount(c=>c+1);
         },ms)
-        console.log(count);
     });
 
     const stop = useCallback(()=>{

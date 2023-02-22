@@ -42,7 +42,6 @@ function App() {
 
     const stopSync = plannerRepository.updateData(`${a}년${b}월${c}일`, (item) => {
       setDetailContent({ ...detailContent, item });
-      console.log(item);
     })
 
     return () => { stopSync() };
@@ -64,7 +63,6 @@ function App() {
   useEffect(() => {
     if (userInfo === null)
       navigate("/");
-    console.log(userInfo);
   }, [userInfo]);
 
 

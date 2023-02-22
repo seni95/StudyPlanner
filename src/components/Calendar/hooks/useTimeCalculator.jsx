@@ -13,7 +13,6 @@ export default function useTimeCalculator(item){
     
         const getSeconds = alltimes.map(v=>parseInt(v.substr(6,2)));
     
-        console.log(getSeconds);
         var hour=0;
         var min=0;
         var seconds=0;
@@ -21,8 +20,6 @@ export default function useTimeCalculator(item){
           hour +=getHours[k];
           min+=getMin[k];
           seconds +=getSeconds[k];
-          console.log(getSeconds[k]);
-          console.log(seconds);
         }
     
     

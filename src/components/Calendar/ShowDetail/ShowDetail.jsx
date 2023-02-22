@@ -24,7 +24,6 @@ const ShowAnal = ({item})=>{
 
     const getSeconds = alltimes.map(v=>parseInt(v.substr(6,2)));
 
-    console.log(getSeconds);
     var hour=0;
     var min=0;
     var seconds=0;
@@ -32,11 +31,8 @@ const ShowAnal = ({item})=>{
       hour +=getHours[k];
       min+=getMin[k];
       seconds +=getSeconds[k];
-      console.log(getSeconds[k]);
-      console.log(seconds);
     }
 
-    console.log(hour+"시간"+min+"분"+seconds+"초");
 
     const totalSeconds = seconds>60?seconds%60:seconds;
     const calMin = Math.floor(seconds/60)+min;

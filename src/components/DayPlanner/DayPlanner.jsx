@@ -24,7 +24,6 @@ export default function DayPlanner({plannerRepository,userInfo}) {
 
     // useEffect(()=>{
     //     localStorage.setItem('todos',JSON.stringify(todos));
-    //     console.log('todos 변경');
     // },[todos]);
 
 
