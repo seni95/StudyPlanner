@@ -20,13 +20,6 @@ li{
 
 
 
-.contents{
-    display: flex;
-    flex-direction: row;
-    flex:1 1 0%;
-    flex-grow: 1;
-
-}
 
 .calendar{
     width: 100%;
@@ -97,6 +90,19 @@ color:white;
       
     .contents{
         flex-direction: column;
+    }
+    .innerContents{
+
+    }
+   }
+
+   @media(max-width:640px){
+    .container{
+        min-width:100%;
+    }
+      
+    .contents{
+        /* flex-direction: column; */
     }
     .innerContents{
 
