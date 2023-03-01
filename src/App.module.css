@@ -1,18 +1,18 @@
-.container{
+.container {
     height: 100%;
     display: flex;
     flex-direction: row;
 }
 
-.menuTitle{
-    color:#2c3e50;
+.menuTitle {
+    color: #2c3e50;
 }
 
-li{
+li {
     list-style: none;
 }
 
-.mainView{
+.mainView {
     display: flex;
     flex-direction: column;
     flex: 1 1 auto;
@@ -21,91 +21,103 @@ li{
 
 
 
-.calendar{
+.calendar {
     width: 100%;
-    height:100%;
+    height: 100%;
     background-color: rgba(16 18 27 / 40%);
     display: flex;
-    align-items: center;    
+    align-items: center;
 }
 
 
-.screen{
+.screen {
     height: 100%;
     display: flex;
 }
 
-.userImg{
+.userImg {
     border-radius: 50%;
-    width:3rem;
+    width: 3rem;
     margin-bottom: 1rem;
 }
 
-.nav{
+.nav {
     padding: .7rem;
     display: flex;
     justify-content: space-between;
 }
 
-.offButton{
-    color:red;
-    font-size:1.3rem;
+.offButton {
+    color: red;
+    font-size: 1.3rem;
 }
 
-.buttonUI{
+.buttonUI {}
 
-}
-.navButton{
-
- background-color: transparent;
- font-size:2rem;
-padding-left:1rem;
-padding-right:1rem;
-color:white;
+.navButton {
+    background-color: transparent;
+    font-size: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: white;
 }
 
-.userInfo{
+.userInfo {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top:5rem;
-    padding:1rem;
+    margin-top: 5rem;
+    padding: 1rem;
 }
 
 
-.navButton:hover{
+.navButton:hover {
     background-color: var(--color-main);
-    color:var(--color-white);
+    color: var(--color-white);
 }
 
-.viewContents{
-    border-bottom:3px solid white
+.viewContents {
+    border-bottom: 3px solid white
 }
 
 
-@media(max-width:750px){
-    .container{
-        min-width:100%;
+@media(max-width:750px) {
+    .container {
+        min-width: 100%;
     }
-      
-    .contents{
+
+    .innerContents {}
+}
+
+@media(max-width:640px) {
+    .container {
+        min-width: 100%;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .userInfo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .userImg {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .userInfo h2 {
+        display: none;
+    }
+
+    .navButton {
+        font-size: 1rem;
+    }
+
+    .calendar {
         flex-direction: column;
     }
-    .innerContents{
-
-    }
-   }
-
-   @media(max-width:640px){
-    .container{
-        min-width:100%;
-    }
-      
-    .contents{
-        /* flex-direction: column; */
-    }
-    .innerContents{
-
-    }
-   }
-
+}

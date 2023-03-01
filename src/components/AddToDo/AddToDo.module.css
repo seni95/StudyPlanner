@@ -27,3 +27,28 @@
 
 .timeInput{
 }
+
+@media(max-width:640px) {
+    .form{
+        margin:0;
+        width:100%;
+    }
+    
+    .input{
+        padding:0;
+        border:none;
+        outline:none;
+        border-radius:8px;
+        display: inline;
+    }
+    
+    .button{
+        background-color: var(--color-main);
+        color:var(--color-white);
+        font-weight: bold;
+        cursor:pointer;
+        font-size:1rem;
+        margin-left:0;
+        padding: 1rem;
+    }
+}

@@ -85,6 +85,12 @@ code {
     monospace;
 }
 
+@media(max-width:640px) {
+ body{
+  height:100%;
+ }
+}
+
 
 ul{
   list-style: none;

@@ -45,10 +45,10 @@ const ShowAnal = ({item})=>{
   }
 
 
-  const returnWorks = (i)=>{
+  const returnWorks = (i,index)=>{
 
     return (
-      <li>
+      <li key={index}>
         <div>{i.name}</div>
         <span>총 작업시간: {i.time}</span>
         <span className={styles.status}>{i.status!=="active"?"완료":"미완료"}</span>
@@ -83,10 +83,10 @@ const ShowAnal = ({item})=>{
     <div>완료한 업무 : {returnComplete(item)}</div>
     <div>진행도 : {returnRate(item)}</div>
      
-    <div className={styles.items}>
+    <ul className={styles.items}>
       업무 리스트
-    {item.map(i=>returnWorks(i))}
-    </div>
+    {item.map((i,index)=>returnWorks(i,index))}
+    </ul>
   </div>;
 
 }
