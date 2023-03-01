@@ -7,8 +7,11 @@ export default function useCounter(initialValue,ms) {
         if(intervalRef.current !== null){
             return;
         }
+        const baseTime = Date.now();
+        const initialV = count;
         intervalRef.current = setInterval(()=>{
-            setCount(c=>c+1);
+            const tick = Math.floor((Date.now()-baseTime)/1000);
+            setCount(initialV+tick);
         },ms)
     });
 
