@@ -19,4 +19,9 @@
 .button{
     color:white;
     border:1px solid white;
+    margin-left:.5rem;
+    margin-right:.5rem;
+}
+.buttonContainer{
+    display: flex;
 }

@@ -52,10 +52,13 @@ return (
         <span>{minutes<10?"0"+minutes:minutes}</span>:
         <span>{seconds<10?"0"+seconds:seconds}</span>
         </div>
+        <div className={styles.buttonContainer}>
         {isStart?
         <button className={styles.button} onClick={()=>{stop(); setIsstart(false);}}>stop</button>
         :
         <button className={styles.button} onClick={()=>{start(); setIsstart(true);}}>start</button>    }
+        <button className={styles.button} onClick={()=>reset()}>reset</button>
+        </div>
     </div>
   )
 }
