@@ -29,13 +29,13 @@ export default function ToDo({status,todo,checkTime,handleDelete,checkStatus}) {
   return (
     <li className={styles.todo}>
         <label htmlFor="" className={styles.text}>
-            <span>{todo.name}</span>
-            <span>{todo.goalTime}</span>
+            <span>{todo.name} </span>
             <span>{todo.time} </span> 
             {showCycle(todo.repeat)}
            <button className={styles.iconWrapper} onClick={()=>{showTimer(todo.id,todo.time)}}><BiStopwatch className={styles.icon}></BiStopwatch></button>
-           <button className={styles.iconWrapper} onClick={()=>{deleteThis(todo.id,todo.repeat)}}><AiOutlineClose className={styles.icon}></AiOutlineClose></button>
+           <button className={styles.iconWrapper} onClick={()=>{deleteThis(todo.id,todo.repeat)}}><AiOutlineClose className={styles.icon}></AiOutlineClose></button>            
         </label>
+        목표시간 : <span className={styles.goalTime}>{todo.goalTime}</span>
         <input type="checkbox" onChange={()=>status==="active"?updateStatus(todo.id,"completed"):updateStatus(todo.id,"active")} className={styles.checkbox} checked={status==="active"?false:true}/>
     </li>
     )
